@@ -9,9 +9,10 @@ Sito statico pubblico di Climb Companion: landing page, Informativa sulla Privac
 - `terms-it.html` / `terms-en.html` — Termini di Servizio / EULA abbonamento Plus
 - `style.css` — stile condiviso da tutte le pagine (header, tipografia, pagine legali)
 - `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png` — icona del sito, ricavata dall'icona reale dell'app
-- `screen-projects.png`, `screen-training.png`, `screen-sessions.png`, `screen-analytics.png` — screen reali catturati dal Simulatore iOS, usati nell'hero e nella sezione "Com'è fatta, davvero"
+- `screen-projects.png`, `screen-training.png`, `screen-sessions.png`, `screen-analytics.png` — screen reali catturati dal Simulatore iOS (italiano), usati in `index.html`
+- `screen-projects-en.png`, `screen-training-en.png`, `screen-sessions-en.png`, `screen-analytics-en.png` — stessi screen catturati con il Simulatore in inglese, usati in `index-en.html`
 
-**Nota sugli screen**: sono catture reali dell'app da Simulatore (⌘S), ridimensionate per il web. Mostrano l'interfaccia in italiano anche nella pagina inglese, perché l'app non ha ancora una cattura equivalente con il Simulatore impostato in inglese. Se in futuro vuoi anche le versioni inglesi, basta cambiare la lingua di sistema del Simulatore prima di catturare e sostituire questi file mantenendo lo stesso nome.
+**Nota sugli screen**: sono catture reali dell'app da Simulatore (⌘S), ridimensionate per il web. Se in futuro aggiorni l'app, ricatturale e sostituisci i file mantenendo lo stesso nome (quelli senza suffisso per l'italiano, quelli con `-en` per l'inglese).
 
 ## Come pubblicarlo (GitHub Pages, gratis)
 
