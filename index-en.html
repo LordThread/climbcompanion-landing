@@ -5,102 +5,203 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Climb Companion — your climbing companion</title>
 <meta name="description" content="Climb Companion: track climbing projects, sessions and training. Everything stays on your device, no account, no tracking.">
+<link rel="icon" href="./favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="stylesheet" href="./style.css">
 <style>
-  :root { --ink:#1c1c1e; --dim:#5b5b5e; --line:#e2e2e4; --bg:#ffffff; --accent:#b3541e; --accent-bg:#fdf1e9; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
-  .wrap { max-width:760px; margin:0 auto; padding:0 24px; }
-  header.hero { background:linear-gradient(180deg, var(--accent-bg), #fff); padding:64px 0 48px; text-align:center; }
-  .lang-switch { font-size:14px; text-align:right; padding:16px 24px 0; max-width:760px; margin:0 auto; }
-  .lang-switch a { color:var(--dim); text-decoration:none; }
-  .badge { display:inline-block; background:var(--accent); color:#fff; font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; padding:5px 12px; border-radius:20px; margin-bottom:20px; }
-  h1 { font-size:36px; margin:0 0 12px; }
-  .tagline { font-size:18px; color:var(--dim); max-width:480px; margin:0 auto 28px; }
-  .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .cta { display:inline-block; padding:12px 22px; border-radius:10px; font-weight:600; text-decoration:none; font-size:15px; }
-  .cta.primary { background:var(--ink); color:#fff; }
-  .cta.secondary { background:#fff; color:var(--ink); border:1px solid var(--line); }
-  section { padding:48px 0; border-top:1px solid var(--line); }
-  section:first-of-type { border-top:none; }
-  h2 { font-size:22px; margin:0 0 24px; text-align:center; }
-  .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; }
-  .feature h3 { font-size:16px; margin:0 0 6px; }
-  .feature p { font-size:14px; color:var(--dim); margin:0; }
-  .privacy-block { background:var(--accent-bg); border-radius:16px; padding:32px; text-align:center; }
-  .privacy-block h2 { margin-bottom:12px; }
-  .privacy-block p { max-width:520px; margin:0 auto; color:var(--dim); font-size:15px; }
-  .plus { text-align:center; }
-  .plus .price { font-size:14px; color:var(--dim); margin-top:8px; }
-  footer { padding:32px 0 64px; text-align:center; font-size:13px; color:var(--dim); }
-  footer a { color:var(--dim); }
-  footer .links { margin-bottom:12px; }
-  footer .links a { margin:0 8px; }
+  body { background: var(--ink); }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(120% 100% at 50% 0%, #2a2825 0%, var(--ink) 60%);
+    color: var(--cream);
+    padding: 88px 24px 96px;
+    text-align: center;
+  }
+  .hero .peaks {
+    position: absolute; left: 0; right: 0; bottom: -2px; height: 140px;
+    background: linear-gradient(180deg, transparent, var(--ink) 92%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
+  .icon-mark { width: 76px; height: 76px; margin: 0 auto 28px; }
+  .badge {
+    display: inline-block; background: rgba(232,163,61,0.14); color: var(--amber-strong);
+    border: 1px solid rgba(232,163,61,0.35);
+    font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 22px;
+  }
+  .hero h1 { font-size: 44px; margin: 0 0 16px; letter-spacing: -0.02em; color: #fff; }
+  .hero .tagline { font-size: 18px; color: var(--cream-dim); max-width: 480px; margin: 0 auto 34px; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta { display: inline-flex; align-items:center; gap:8px; padding: 13px 24px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 15px; transition: transform .15s ease; }
+  .cta:hover { transform: translateY(-1px); }
+  .cta.primary { background: var(--amber); color: #241a05; }
+  .cta.secondary { background: rgba(237,232,222,0.08); color: var(--cream); border: 1px solid rgba(237,232,222,0.18); }
+
+  main { background: var(--ink); color: var(--cream); }
+  section.block { max-width: var(--wrap); margin: 0 auto; padding: 72px 24px; }
+  section.block + section.block { border-top: 1px solid var(--panel-line); }
+  .eyebrow { color: var(--amber-strong); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-align: center; margin: 0 0 10px; }
+  .block h2 { font-size: 28px; text-align: center; margin: 0 0 12px; color: #fff; letter-spacing: -0.01em; }
+  .block .lede { text-align: center; color: var(--cream-dim); max-width: 520px; margin: 0 auto 44px; font-size: 15.5px; }
+
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 20px; }
+  .feature-card { background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px; }
+  .feature-card .ic { width: 30px; height: 30px; color: var(--amber); margin-bottom: 16px; }
+  .feature-card h3 { font-size: 16.5px; margin: 0 0 8px; color: #fff; }
+  .feature-card p { font-size: 14px; color: var(--cream-dim); margin: 0; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 24px; text-align: center; }
+  .stat-row .num { font-size: 34px; font-weight: 700; color: var(--amber-strong); letter-spacing: -0.02em; }
+  .stat-row .label { font-size: 13.5px; color: var(--cream-dim); margin-top: 4px; }
+
+  .pricing-card { max-width: 420px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: 18px; padding: 36px; text-align: center; }
+  .pricing-card h3 { font-size: 20px; margin: 0 0 6px; color: #fff; }
+  .pricing-card .sub { color: var(--cream-dim); font-size: 14px; margin-bottom: 22px; }
+  .pricing-card ul { list-style: none; padding: 0; margin: 0 0 26px; text-align: left; display: inline-block; }
+  .pricing-card li { font-size: 14.5px; color: var(--cream); padding: 6px 0; padding-left: 22px; position: relative; }
+  .pricing-card li::before { content: "✓"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+  .price-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .price-tag { border: 1px solid var(--panel-line); border-radius: 10px; padding: 12px 18px; }
+  .price-tag .amount { font-size: 18px; font-weight: 700; color: #fff; }
+  .price-tag .period { font-size: 12px; color: var(--cream-dim); }
+
+  .final-cta { text-align: center; }
+  .final-cta h2 { margin-bottom: 22px; }
+
+  footer { background: #17130f; color: var(--cream-dim); padding: 56px 24px 32px; }
+  .footer-grid { max-width: var(--wrap); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--cream); font-weight: 700; margin-bottom: 10px; }
+  .footer-brand img { width: 26px; height: 26px; border-radius: 6px; }
+  .footer-col h4 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--cream-dim); margin: 0 0 12px; }
+  .footer-col a { display: block; color: var(--cream-dim); text-decoration: none; font-size: 14px; margin-bottom: 8px; }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom { max-width: var(--wrap); margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--panel-line); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 34px; }
+    .site-header nav { gap: 12px; }
+    .site-header nav a:not(.pill) { display: none; }
+  }
 </style>
 </head>
 <body>
-  <div class="lang-switch"><a href="./index.html">Versione italiana →</a></div>
+  <header class="site-header">
+    <div class="bar">
+      <a class="brand" href="./index-en.html"><img src="./favicon-32.png" alt=""> Climb Companion</a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#plus">Plus</a>
+        <a href="./privacy-en.html">Privacy</a>
+        <a href="./terms-en.html">Terms</a>
+        <a class="pill" href="./index.html">IT</a>
+      </nav>
+    </div>
+  </header>
 
-  <header class="hero">
-    <div class="wrap">
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="icon-mark" src="./icon-512.png" alt="Climb Companion">
       <span class="badge">Coming soon on the App Store</span>
       <h1>Climb Companion</h1>
       <p class="tagline">Track your climbing projects, sessions and training — everything stays on your phone, no account, no ads.</p>
       <div class="cta-row">
-        <a class="cta primary" href="#privacy">How we handle your data</a>
+        <a class="cta primary" href="#plus">Discover Plus</a>
         <a class="cta secondary" href="mailto:sposito.alessandro87@gmail.com">Get in touch</a>
       </div>
     </div>
-  </header>
+    <div class="peaks"></div>
+  </div>
 
-  <section>
-    <div class="wrap">
-      <h2>What you can do with Climb Companion</h2>
-      <div class="features">
-        <div class="feature">
+  <main>
+    <section class="block" id="features">
+      <p class="eyebrow">Features</p>
+      <h2>Everything you need on rock and in the gym</h2>
+      <p class="lede">Four modules built for people who train seriously — no fluff, no social distractions.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-16 4 10 3-6 3 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <h3>Projects</h3>
           <p>Follow a route or a boulder across multiple sessions: attempts, notes, photos and progress in one place.</p>
         </div>
-        <div class="feature">
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h2M18 12h2M7 12h10M7 8v8M17 8v8" stroke-linecap="round"/></svg>
           <h3>Manual training</h3>
           <p>Create your own exercises and training cards, log sets, reps and loads exactly the way you want.</p>
         </div>
-        <div class="feature">
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M11 20V4M18 20v-7" stroke-linecap="round"/></svg>
           <h3>Sessions</h3>
           <p>Category breakdown, grade scale, volume and frequency — to really understand how you're progressing.</p>
         </div>
-        <div class="feature">
+        <div class="feature-card">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg>
           <h3>Challenges</h3>
           <p>Set personal goals and keep track of them over time, with reminders handled entirely by your phone.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="privacy">
-    <div class="wrap">
-      <div class="privacy-block">
-        <h2>No account. No server. No tracking.</h2>
-        <p>Climb Companion has no server of its own: all your data stays exclusively on your device. No third-party SDKs, no advertising, no analytics watching you. The only way your data ever leaves your phone is a manual export you choose to make.</p>
+    <section class="block">
+      <p class="eyebrow">Privacy</p>
+      <h2>No account. No server. No tracking.</h2>
+      <p class="lede">Climb Companion has no server of its own: all your data stays exclusively on your device. The only way it ever leaves your phone is a manual export you choose to make.</p>
+      <div class="stat-row">
+        <div><div class="num">0</div><div class="label">Developer servers</div></div>
+        <div><div class="num">0</div><div class="label">Tracking SDKs</div></div>
+        <div><div class="num">100%</div><div class="label">Data on your device</div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="plus">
-    <div class="wrap">
+    <section class="block" id="plus">
+      <p class="eyebrow">Subscription</p>
       <h2>Climb Companion Plus</h2>
-      <p>Grade pyramid, advanced session analytics, unlimited projects and training cards.</p>
-      <p class="price">€2.49/month (7-day free trial) or €14.99/year — handled entirely by Apple.</p>
-    </div>
-  </section>
+      <p class="lede">For those who want to dig deep into their progress.</p>
+      <div class="pricing-card">
+        <h3>Plus</h3>
+        <p class="sub">Unlock full analysis of your training</p>
+        <ul>
+          <li>Grade pyramid and route/boulder analysis</li>
+          <li>Advanced session analytics (category, grade, volume, frequency)</li>
+          <li>Unlimited projects and training cards</li>
+        </ul>
+        <div class="price-row">
+          <div class="price-tag"><div class="amount">€2.49</div><div class="period">/month · 7-day trial</div></div>
+          <div class="price-tag"><div class="amount">€14.99</div><div class="period">/year</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block final-cta">
+      <h2>Ready to train with a plan?</h2>
+      <div class="cta-row">
+        <a class="cta primary" href="mailto:sposito.alessandro87@gmail.com">Write to us for launch updates</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <div class="wrap">
-      <div class="links">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="./favicon-32.png" alt=""> Climb Companion</div>
+        <p style="font-size:14px; max-width:280px;">The app for tracking climbing projects, sessions and training, all on your own device.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#plus">Plus</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
         <a href="./privacy-en.html">Privacy Policy</a>
         <a href="./terms-en.html">Terms of Service</a>
         <a href="mailto:sposito.alessandro87@gmail.com">Contact</a>
       </div>
-      <p>Climb Companion — Alessandro Sposito</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Climb Companion — Alessandro Sposito</span>
+      <a href="./index.html">Versione italiana →</a>
     </div>
   </footer>
 </body>

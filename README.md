@@ -4,9 +4,11 @@ Sito statico pubblico di Climb Companion: landing page, Informativa sulla Privac
 
 ## File
 
-- `index.html` / `index-en.html` — landing page (IT/EN)
+- `index.html` / `index-en.html` — landing page (IT/EN), tema scuro con i colori dell'icona dell'app
 - `privacy-it.html` / `privacy-en.html` — Informativa sulla Privacy
 - `terms-it.html` / `terms-en.html` — Termini di Servizio / EULA abbonamento Plus
+- `style.css` — stile condiviso da tutte le pagine (header, tipografia, pagine legali)
+- `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png` — icona del sito, ricavata dall'icona reale dell'app
 
 ## Come pubblicarlo (GitHub Pages, gratis)
 
@@ -18,7 +20,7 @@ Sito statico pubblico di Climb Companion: landing page, Informativa sulla Privac
    ```bash
    git clone https://github.com/<tuo-username>/climbcompanion-landing.git
    ```
-3. Copia dentro la cartella appena clonata tutti i file di questo pacchetto (`index.html`, `index-en.html`, `privacy-it.html`, `privacy-en.html`, `terms-it.html`, `terms-en.html`, questo `README.md`).
+3. Copia dentro la cartella appena clonata **tutti** i file di questo pacchetto, mantenendoli alla radice (non in una sottocartella): `index.html`, `index-en.html`, `privacy-it.html`, `privacy-en.html`, `terms-it.html`, `terms-en.html`, `style.css`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png`, questo `README.md`.
 4. Fai il primo commit e push:
    ```bash
    cd climbcompanion-landing
