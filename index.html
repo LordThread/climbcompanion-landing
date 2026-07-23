@@ -13,7 +13,12 @@
   .hero {
     position: relative;
     overflow: hidden;
-    background: radial-gradient(120% 100% at 50% 0%, #2a2825 0%, var(--ink) 60%);
+    background:
+      linear-gradient(180deg, rgba(20,18,15,0.55) 0%, rgba(20,18,15,0.72) 55%, var(--ink) 96%),
+      linear-gradient(100deg, rgba(12,11,10,0.65) 0%, rgba(12,11,10,0.15) 55%),
+      url('./hero-photo.jpg');
+    background-size: cover;
+    background-position: center 35%;
     color: var(--cream);
     padding: 76px 24px 40px;
   }
@@ -96,6 +101,18 @@
   .final-cta h2 { margin-bottom: 22px; }
   .final-cta .cta-row { justify-content: center; }
 
+  .editorial-break {
+    position: relative; min-height: 340px; margin: 0;
+    background:
+      linear-gradient(90deg, rgba(12,11,10,0.88) 0%, rgba(12,11,10,0.35) 60%, rgba(12,11,10,0.1) 100%),
+      url('./editorial-photo.jpg');
+    background-size: cover; background-position: center;
+    display: flex; align-items: center;
+  }
+  .editorial-break .inner { max-width: var(--wrap); margin: 0 auto; padding: 48px 24px; width: 100%; }
+  .editorial-break blockquote { margin: 0; max-width: 440px; font-size: 22px; line-height: 1.4; color: #fff; font-weight: 600; letter-spacing: -0.01em; }
+  .editorial-break cite { display: block; margin-top: 14px; font-size: 13.5px; color: var(--cream-dim); font-style: normal; }
+
   footer { background: #17130f; color: var(--cream-dim); padding: 56px 24px 32px; }
   .footer-grid { max-width: var(--wrap); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
   .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--cream); font-weight: 700; margin-bottom: 10px; }
@@ -115,6 +132,8 @@
     .hero h1 { font-size: 32px; }
     .site-header nav { gap: 12px; }
     .site-header nav a:not(.pill) { display: none; }
+    .editorial-break { min-height: 260px; }
+    .editorial-break blockquote { font-size: 18px; }
   }
 </style>
 </head>
@@ -140,8 +159,8 @@
         <h1>Climb Companion</h1>
         <p class="tagline">Traccia i tuoi progetti di arrampicata, le sessioni e gli allenamenti — tutto resta sul tuo telefono, senza account e senza pubblicità.</p>
         <div class="cta-row">
-          <a class="cta primary" href="#plus">Scopri Plus</a>
-          <a class="cta secondary" href="mailto:sposito.alessandro87@gmail.com">Scrivici</a>
+          <a class="cta primary" href="#features">Scopri l'app</a>
+          <a class="cta secondary" href="mailto:sposito.alessandro87@gmail.com">Iscriviti per il lancio</a>
         </div>
       </div>
       <div class="hero-phone">
@@ -201,6 +220,13 @@
         </div>
       </div>
     </section>
+
+    <div class="editorial-break">
+      <div class="inner">
+        <blockquote>"Il progetto giusto non è quello più facile. È quello su cui torni, sessione dopo sessione."</blockquote>
+        <cite>Climb Companion — pensato per chi lavora sui propri progetti nel tempo.</cite>
+      </div>
+    </div>
 
     <section class="block">
       <p class="eyebrow">L'app</p>
@@ -280,7 +306,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Climb Companion — Alessandro Sposito</span>
+      <span>© 2026 Climb Companion</span>
       <a href="./index-en.html">English version →</a>
     </div>
   </footer>

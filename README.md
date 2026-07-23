@@ -14,6 +14,9 @@ Sito statico pubblico di Climb Companion: landing page, Informativa sulla Privac
 
 **Nota sugli screen**: sono catture reali dell'app da Simulatore (⌘S), ridimensionate per il web. Se in futuro aggiorni l'app, ricatturale e sostituisci i file mantenendo lo stesso nome (quelli senza suffisso per l'italiano, quelli con `-en` per l'inglese).
 
+- `hero-photo.jpg` — foto di sfondo dell'hero (climber su parete, luce dorata), generata con AI (Higgsfield Soul 2), nessun problema di copyright/licenza
+- `editorial-photo.jpg` — foto della sezione "break" tra Funzionalità e Com'è fatta (dettaglio mani con magnesite), stessa origine
+
 ## Come pubblicarlo (GitHub Pages, gratis)
 
 1. Vai su [github.com/new](https://github.com/new) e crea un nuovo repository:
