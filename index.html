@@ -62,12 +62,18 @@
   .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 20px; }
   .feature-card { background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px; }
   .feature-card .ic { width: 30px; height: 30px; color: var(--amber); margin-bottom: 16px; }
-  .feature-card h3 { font-size: 16.5px; margin: 0 0 8px; color: #fff; }
-  .feature-card p { font-size: 14px; color: var(--cream-dim); margin: 0; }
+  .feature-card h3 { font-size: 17.5px; margin: 0 0 8px; color: #fff; }
+  .feature-card > p { font-size: 14px; color: var(--cream-dim); margin: 0 0 14px; }
+  .feature-card ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--panel-line); padding-top: 12px; }
+  .feature-card li { font-size: 13.5px; color: var(--cream-dim); padding: 4px 0 4px 18px; position: relative; }
+  .feature-card li::before { content: "＋"; position: absolute; left: 0; top: 4px; color: var(--amber); font-size: 11px; }
 
-  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 24px; text-align: center; }
-  .stat-row .num { font-size: 34px; font-weight: 700; color: var(--amber-strong); letter-spacing: -0.02em; }
-  .stat-row .label { font-size: 13.5px; color: var(--cream-dim); margin-top: 4px; }
+  .privacy-card { max-width: 760px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px 30px; display: flex; gap: 18px; align-items: flex-start; }
+  .privacy-card .ic-wrap { flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px; background: rgba(232,163,61,0.14); display: flex; align-items: center; justify-content: center; }
+  .privacy-card .ic-wrap svg { width: 21px; height: 21px; color: var(--amber-strong); }
+  .privacy-card h3 { margin: 0 0 6px; font-size: 16.5px; color: #fff; }
+  .privacy-card p { margin: 0; font-size: 14px; color: var(--cream-dim); line-height: 1.5; }
+  .block-compact { padding-top: 44px; padding-bottom: 44px; }
 
   .pricing-card { max-width: 420px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: 18px; padding: 36px; text-align: center; }
   .pricing-card h3 { font-size: 20px; margin: 0 0 6px; color: #fff; }
@@ -157,21 +163,41 @@
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-16 4 10 3-6 3 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <h3>Progetti</h3>
           <p>Segui una via o un blocco su più sessioni: tentativi, note, foto e progressi in un unico posto.</p>
+          <ul>
+            <li>Grado massimo per boulder e vie, sempre in evidenza</li>
+            <li>Storico tentativi con esito ed evoluzione</li>
+            <li>Foto e note per ogni progetto</li>
+          </ul>
         </div>
         <div class="feature-card">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h2M18 12h2M7 12h10M7 8v8M17 8v8" stroke-linecap="round"/></svg>
           <h3>Allenamento manuale</h3>
           <p>Crea i tuoi esercizi e le tue schede, registra serie, ripetizioni e carichi come preferisci.</p>
+          <ul>
+            <li>Schede su misura: mobilità, hangboard, forza dita</li>
+            <li>Nessun template imposto, decidi tu cosa allenare</li>
+            <li>Log rapido di serie e ripetizioni durante la sessione</li>
+          </ul>
         </div>
         <div class="feature-card">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M11 20V4M18 20v-7" stroke-linecap="round"/></svg>
           <h3>Sessioni</h3>
           <p>Analisi per categoria, scala dei gradi, volume e frequenza — per capire davvero come stai progredendo.</p>
+          <ul>
+            <li>Storico completo di ogni sessione registrata</li>
+            <li>Mix per categoria: forza, tecnica, mobilità, antagonisti</li>
+            <li>Andamento settimanale con media mobile</li>
+          </ul>
         </div>
         <div class="feature-card">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg>
           <h3>Challenge</h3>
           <p>Datti obiettivi personali e tienine traccia nel tempo, con promemoria gestiti direttamente dal telefono.</p>
+          <ul>
+            <li>Obiettivi settimanali su misura (es. 3 sessioni tecnica)</li>
+            <li>Avanzamento visibile a colpo d'occhio</li>
+            <li>Promemoria automatici, nessuna app esterna</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -196,14 +222,15 @@
       </div>
     </section>
 
-    <section class="block">
-      <p class="eyebrow">Privacy</p>
-      <h2>Nessun account. Nessun server. Nessun tracciamento.</h2>
-      <p class="lede">Climb Companion non ha un proprio server: tutti i tuoi dati restano esclusivamente sul tuo dispositivo. L'unico modo in cui escono dal telefono è un export manuale che decidi tu.</p>
-      <div class="stat-row">
-        <div><div class="num">0</div><div class="label">Server dello sviluppatore</div></div>
-        <div><div class="num">0</div><div class="label">SDK di tracciamento</div></div>
-        <div><div class="num">100%</div><div class="label">Dati sul tuo dispositivo</div></div>
+    <section class="block block-compact">
+      <div class="privacy-card">
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>I tuoi dati restano tuoi</h3>
+          <p>Niente account da creare, niente pubblicità, niente dati condivisi con terzi. Tutto quello che registri resta sul tuo telefono — lo condividi con altri solo se e quando lo decidi tu, con un export manuale.</p>
+        </div>
       </div>
     </section>
 

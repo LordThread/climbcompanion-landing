@@ -61,12 +61,18 @@
   .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 20px; }
   .feature-card { background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px; }
   .feature-card .ic { width: 30px; height: 30px; color: var(--amber); margin-bottom: 16px; }
-  .feature-card h3 { font-size: 16.5px; margin: 0 0 8px; color: #fff; }
-  .feature-card p { font-size: 14px; color: var(--cream-dim); margin: 0; }
+  .feature-card h3 { font-size: 17.5px; margin: 0 0 8px; color: #fff; }
+  .feature-card > p { font-size: 14px; color: var(--cream-dim); margin: 0 0 14px; }
+  .feature-card ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--panel-line); padding-top: 12px; }
+  .feature-card li { font-size: 13.5px; color: var(--cream-dim); padding: 4px 0 4px 18px; position: relative; }
+  .feature-card li::before { content: "＋"; position: absolute; left: 0; top: 4px; color: var(--amber); font-size: 11px; }
 
-  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 24px; text-align: center; }
-  .stat-row .num { font-size: 34px; font-weight: 700; color: var(--amber-strong); letter-spacing: -0.02em; }
-  .stat-row .label { font-size: 13.5px; color: var(--cream-dim); margin-top: 4px; }
+  .privacy-card { max-width: 760px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px 30px; display: flex; gap: 18px; align-items: flex-start; }
+  .privacy-card .ic-wrap { flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px; background: rgba(232,163,61,0.14); display: flex; align-items: center; justify-content: center; }
+  .privacy-card .ic-wrap svg { width: 21px; height: 21px; color: var(--amber-strong); }
+  .privacy-card h3 { margin: 0 0 6px; font-size: 16.5px; color: #fff; }
+  .privacy-card p { margin: 0; font-size: 14px; color: var(--cream-dim); line-height: 1.5; }
+  .block-compact { padding-top: 44px; padding-bottom: 44px; }
 
   .pricing-card { max-width: 420px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: 18px; padding: 36px; text-align: center; }
   .pricing-card h3 { font-size: 20px; margin: 0 0 6px; color: #fff; }
@@ -156,21 +162,41 @@
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-16 4 10 3-6 3 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <h3>Projects</h3>
           <p>Follow a route or a boulder across multiple sessions: attempts, notes, photos and progress in one place.</p>
+          <ul>
+            <li>Max grade for boulders and routes, always in view</li>
+            <li>Attempt history with outcome and progression</li>
+            <li>Photos and notes for every project</li>
+          </ul>
         </div>
         <div class="feature-card">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h2M18 12h2M7 12h10M7 8v8M17 8v8" stroke-linecap="round"/></svg>
           <h3>Manual training</h3>
           <p>Create your own exercises and training cards, log sets, reps and loads exactly the way you want.</p>
+          <ul>
+            <li>Custom cards: mobility, hangboard, finger strength</li>
+            <li>No fixed template — you decide what to train</li>
+            <li>Quick set and rep logging during your session</li>
+          </ul>
         </div>
         <div class="feature-card">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M11 20V4M18 20v-7" stroke-linecap="round"/></svg>
           <h3>Sessions</h3>
           <p>Category breakdown, grade scale, volume and frequency — to really understand how you're progressing.</p>
+          <ul>
+            <li>Full history of every logged session</li>
+            <li>Category mix: strength, technique, mobility, antagonists</li>
+            <li>Weekly trend with moving average</li>
+          </ul>
         </div>
         <div class="feature-card">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg>
           <h3>Challenges</h3>
           <p>Set personal goals and keep track of them over time, with reminders handled entirely by your phone.</p>
+          <ul>
+            <li>Custom weekly goals (e.g. 3 technique sessions)</li>
+            <li>Progress visible at a glance</li>
+            <li>Automatic reminders, no external app</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -195,14 +221,15 @@
       </div>
     </section>
 
-    <section class="block">
-      <p class="eyebrow">Privacy</p>
-      <h2>No account. No server. No tracking.</h2>
-      <p class="lede">Climb Companion has no server of its own: all your data stays exclusively on your device. The only way it ever leaves your phone is a manual export you choose to make.</p>
-      <div class="stat-row">
-        <div><div class="num">0</div><div class="label">Developer servers</div></div>
-        <div><div class="num">0</div><div class="label">Tracking SDKs</div></div>
-        <div><div class="num">100%</div><div class="label">Data on your device</div></div>
+    <section class="block block-compact">
+      <div class="privacy-card">
+        <div class="ic-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>Your data stays yours</h3>
+          <p>No account to create, no ads, no data shared with third parties. Everything you log stays on your phone — you share it with anyone else only if and when you choose to, through a manual export.</p>
+        </div>
       </div>
     </section>
 
