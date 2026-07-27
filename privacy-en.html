@@ -4,63 +4,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Climb Companion</title>
-<link rel="icon" href="./favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./style.css">
+<style>
+  :root {
+    --ink: #1c1c1e;
+    --dim: #5b5b5e;
+    --line: #e2e2e4;
+    --bg: #ffffff;
+    --accent: #b3541e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+  h1 { font-size: 28px; margin: 0 0 4px; }
+  .subtitle { color: var(--dim); font-size: 15px; margin: 0 0 32px; }
+  .lang-switch { font-size: 14px; margin-bottom: 32px; }
+  .lang-switch a { color: var(--accent); text-decoration: none; }
+  h2 { font-size: 18px; margin: 36px 0 8px; border-top: 1px solid var(--line); padding-top: 24px; }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  p { margin: 0 0 14px; font-size: 15.5px; }
+  .updated { color: var(--dim); font-size: 13px; margin-top: 48px; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
 </head>
 <body>
-<header class="site-header">
-  <div class="bar">
-    <a class="brand" href="./index-en.html"><img src="./favicon-32.png" alt=""> Climb Companion</a>
-    <nav>
-      <a href="./index-en.html">Home</a>
-      <a href="./terms-en.html">Terms</a>
-      <a class="pill" href="./privacy-it.html">IT</a>
-    </nav>
-  </div>
-</header>
-<div class="doc-wrap">
+<div class="wrap">
   <h1>Privacy Policy</h1>
-  <p class="subtitle">Climb Companion — how your data is handled</p>
+  <p class="subtitle">Climb Companion — processing of personal data</p>
+  <div class="lang-switch"><a href="./privacy-it.html">Leggi questa pagina in italiano →</a></div>
 
-  <h2>Data controller</h2>
-  <p>The data controller is Climb Companion — <strong>climb.companion.app@gmail.com</strong>. Climb Companion has no legal department nor a Data Protection Officer (DPO): none is required for processing at this scale, but you can still write to this address with any question about this policy.</p>
+  <h2>1. Data controller</h2>
+  <p>The data controller is Alessandro Sposito — <strong>climb.companion.app@gmail.com</strong>. Climb Companion has no legal department or Data Protection Officer (DPO): one isn't required for processing at this scale, but you can still write to this address with any question about this policy.</p>
 
-  <h2>Where your data stays</h2>
-  <p>Climb Companion has no server of its own: your profile, projects, photos, training history, Challenges, and everything else you enter stay exclusively on your device, in a local database (SwiftData) that the app creates and manages by itself. No data is ever sent to a developer server — no such server exists.</p>
+  <h2>2. Where your data stays</h2>
+  <p>Climb Companion has no server of its own: your profile, projects, photos, training history, Challenges, and all other information you enter stay exclusively on your device, in a local database (SwiftData) that the app creates and manages by itself. No data is ever sent to a developer's server: there is no developer server to send it to.</p>
 
-  <h2>Camera and project photos</h2>
-  <p>If you take a photo of a route or boulder, the image is saved only in the app's local database, never in the system photo library or anywhere else. If you pick an existing photo instead, the app uses iOS's system picker (PhotosPicker): it only receives the photo you pick, without ever requesting or obtaining access to the rest of your photo library.</p>
+  <h2>3. Camera and project photos</h2>
+  <p>If you take a photo of a route or a boulder, the image is saved only in the app's local database, never in the system photo library or anywhere else. If you choose an existing photo instead, the app uses iOS's system picker (PhotosPicker): it only receives the photo you choose, without ever requesting or gaining access to the rest of your photo library.</p>
 
-  <h2>Notifications</h2>
-  <p>Challenge reminders are local notifications, scheduled and managed entirely by your device: they never go through any server, neither the developer's nor a third party's (unlike push notifications, which would require a server).</p>
+  <h2>4. Notifications</h2>
+  <p>Challenge reminders and, if you start a Climb Companion Plus free trial, the single alert shortly before it expires, are local notifications, scheduled and managed entirely by your device: they never pass through any server, developer's or third party's (unlike push notifications, which would require a server). In both cases the app requests permission only when it's actually needed, not at launch.</p>
 
-  <h2>In-app purchases (Climb Companion Plus)</h2>
-  <p>Purchases and subscriptions are handled entirely by Apple through StoreKit: payment, card details, and billing never pass through the developer, who only receives confirmation from Apple that a purchase is valid — never your payment data. For details on data Apple collects during purchase, see Apple's own privacy policy.</p>
+  <h2>5. In-app purchases (Climb Companion Plus)</h2>
+  <p>Purchases and subscriptions are handled entirely by Apple through StoreKit: payment, card details, and billing never pass through the developer, who receives from Apple only confirmation that the purchase is valid, not your payment data. For information on the data Apple collects during purchase, see Apple's own privacy policy.</p>
 
-  <h2>No tracking, no advertising, no third-party SDKs</h2>
-  <p>Climb Companion does not integrate any analytics, advertising, or tracking tools of any kind, whether the developer's own or third-party (no Facebook SDK, Google Analytics, ad framework, or similar). We have no way of knowing how you use the app, how often you open it, or what you do inside it: that data stays only on your device and we never see it.</p>
+  <h2>6. No tracking, no advertising, no third-party SDKs</h2>
+  <p>Climb Companion doesn't integrate any analytics, advertising, or tracking tools of any kind, whether its own or third-party (no Facebook SDK, Google Analytics, ad framework, or similar). We don't learn how you use the app, how often you open it, or what you do inside it: that data stays only on your device and we never see it.</p>
 
-  <h2>Manual backup: the only case where data leaves the device</h2>
-  <p>From Settings ▸ Data &amp; Backup you can export all your data to a file you choose where to save (Files, iCloud Drive, AirDrop...): it's entirely under your control, not an automatic upload. The same file can be re-imported to restore your data on another device or after reinstalling the app. The developer never has access to this file unless you choose to share it yourself.</p>
+  <h2>7. The review prompt</h2>
+  <p>Sometimes, after a positive moment (a route sent, a training card finished, a Challenge completed), the system popup asking you to rate the app may appear. It's Apple's native mechanism (<code>SKStoreReviewController</code>), managed entirely by iOS: the app only decides when to suggest it, never shows it directly, and never receives any outcome. We don't know whether you left a rating, how many stars you gave, or whether you simply closed the popup — Apple doesn't share this information with the developer. If you've turned on "Share With App Developers" in iOS Settings ▸ Privacy & Security ▸ Analytics & Improvements, Apple can provide us, through App Store Connect, some aggregated and anonymous usage metrics: even in that case it's a channel managed and aggregated by Apple, not tracking implemented by this app.</p>
 
-  <h2>Retention and deletion</h2>
-  <p>Your data stays on the device until you uninstall the app or delete it yourself from individual screens (e.g. deleting a project or an attempt). Uninstalling the app permanently erases everything, unless you previously saved a manual backup — that's why periodic export is recommended before switching devices.</p>
+  <h2>8. Manual backup</h2>
+  <p>From Settings ▸ Data & Backup you can export all your data to a file that you choose where to save (Files, iCloud Drive, AirDrop...): it's entirely under your control, not an automatic upload. The same file can be re-imported to restore data on another device or after reinstalling the app. The developer never has access to this file unless you choose to share it yourself.</p>
 
-  <h2>iCloud sync (not yet active)</h2>
-  <p>A future version may introduce syncing across your devices via private iCloud (CloudKit): even then, data would remain in your own personal Apple account, never on a developer server. This policy will be updated before that feature becomes active.</p>
+  <h2>9. Retention and deletion</h2>
+  <p>Your data stays on the device until you uninstall the app or delete it yourself from the individual screens (e.g. deleting a project or an attempt). Uninstalling the app permanently erases everything, unless you saved a manual backup beforehand: that's why a periodic export is recommended before switching devices.</p>
 
-  <h2>Minors</h2>
-  <p>Climb Companion is not specifically directed at children under 16 and does not require account registration, so it does not knowingly collect identifying data from minors. If you are a parent and believe your child has used the app and entered personal data, you can delete it at any time by removing the app or the individual content from settings.</p>
+  <h2>10. Automatic iCloud backup (optional)</h2>
+  <p>From Settings ▸ iCloud Backup you can turn on, if you want, the automatic saving of a copy of your data (the same format as the manual export) to your private iCloud Drive: it's off by default, only you can turn it on. Your data stays in your own personal Apple account, under your private iCloud — the developer has no access to that backup, nor to any server of its own. This is not real-time sync between devices (that would require CloudKit, not yet introduced): it's a backup copy written periodically, useful so you don't lose your history when switching devices.</p>
 
-  <h2>Your rights</h2>
-  <p>Since your data stays on your own device, you already have full direct control: you can view, modify, or delete it at any time from within the app's screens, with no need to request this from the developer. If you'd still like to formally exercise your GDPR rights (access, rectification, erasure, portability, objection) by writing to the controller, you can do so at the address above.</p>
+  <h2>11. Minors</h2>
+  <p>Climb Companion is not specifically directed at children under 16 and doesn't require account registration, so it doesn't knowingly collect identifying data from minors. If you're a parent and believe your child used the app and entered personal data, you can delete it at any time by removing the app or the individual content from the settings.</p>
 
-  <h2>Changes to this policy</h2>
-  <p>If this policy changes substantially (for example with the introduction of iCloud sync), the updated version will always be available here, with the last-updated date shown.</p>
+  <h2>12. Your rights</h2>
+  <p>Because your data stays on your device, you already have full direct control: you can view, edit, or delete it at any time from the app's screens, with no need to request it from the developer. If you'd still prefer to formally exercise the rights granted by the GDPR (access, rectification, erasure, portability, objection) by writing to the controller, you can do so at the address given above.</p>
 
-  <h2>Contact</h2>
-  <p>For any question about this policy or how your data is handled, write to <strong>climb.companion.app@gmail.com</strong>.</p>
+  <h2>13. Changes to this policy</h2>
+  <p>If this policy changes in a material way (for example with the introduction of real-time sync via CloudKit), the updated version will always be published at this same address, with the last-updated date shown at the bottom of the page.</p>
+
+  <h2>14. Contact</h2>
+  <p>For any question about this policy or the processing of your data, write to <strong>climb.companion.app@gmail.com</strong>.</p>
 
   <p class="updated">Last updated: July 27, 2026</p>
 </div>
