@@ -160,7 +160,7 @@
         <p class="tagline">Traccia i tuoi progetti di arrampicata, le sessioni e gli allenamenti — tutto resta sul tuo telefono, senza account e senza pubblicità.</p>
         <div class="cta-row">
           <a class="cta primary" href="#features">Scopri l'app</a>
-          <a class="cta secondary" href="mailto:climb.companion.app@gmail.com">Iscriviti per il lancio</a>
+          <button type="button" class="cta secondary" data-open-contact>Iscriviti per il lancio</button>
         </div>
       </div>
       <div class="hero-phone">
@@ -282,7 +282,7 @@
     <section class="block final-cta">
       <h2>Pronto a scalare con metodo?</h2>
       <div class="cta-row">
-        <a class="cta primary" href="mailto:climb.companion.app@gmail.com">Scrivici per aggiornamenti sul lancio</a>
+        <button type="button" class="cta primary" data-open-contact>Scrivici per aggiornamenti sul lancio</button>
       </div>
     </section>
   </main>
@@ -302,7 +302,7 @@
         <h4>Legale</h4>
         <a href="./privacy-it.html">Informativa sulla Privacy</a>
         <a href="./terms-it.html">Termini di Servizio</a>
-        <a href="mailto:climb.companion.app@gmail.com">Contatti</a>
+        <button type="button" class="link-like" data-open-contact>Contatti</button>
       </div>
     </div>
     <div class="footer-bottom">
@@ -310,5 +310,77 @@
       <a href="./index-en.html">English version →</a>
     </div>
   </footer>
+
+  <div class="modal-overlay" id="contactModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <button type="button" class="modal-close" id="contactModalClose" aria-label="Chiudi">&times;</button>
+      <h3 id="contactModalTitle">Scrivici</h3>
+      <p class="modal-sub">Lascia il tuo messaggio: ti risponderemo a climb.companion.app@gmail.com.</p>
+      <form id="contactForm">
+        <label>Nome
+          <input type="text" name="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Messaggio
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <button type="submit" class="cta primary">Invia</button>
+        <p class="form-status" id="contactFormStatus" hidden></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var modal = document.getElementById('contactModal');
+      var form = document.getElementById('contactForm');
+      var status = document.getElementById('contactFormStatus');
+      var closeBtn = document.getElementById('contactModalClose');
+      var openers = document.querySelectorAll('[data-open-contact]');
+
+      function openModal() {
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      openers.forEach(function (btn) { btn.addEventListener('click', openModal); });
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        status.hidden = true;
+
+        fetch('https://formsubmit.co/ajax/climb.companion.app@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        })
+          .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+          .then(function () {
+            status.textContent = 'Messaggio inviato! Ti risponderemo presto.';
+            status.className = 'form-status success';
+            status.hidden = false;
+            form.reset();
+          })
+          .catch(function () {
+            status.textContent = 'Invio non riuscito. Riprova oppure scrivi a climb.companion.app@gmail.com.';
+            status.className = 'form-status error';
+            status.hidden = false;
+          })
+          .finally(function () { submitBtn.disabled = false; });
+      });
+    })();
+  </script>
 </body>
 </html>

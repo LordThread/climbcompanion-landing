@@ -73,3 +73,41 @@ a { color: var(--link); }
 .doc-wrap p { margin: 0 0 14px; font-size: 15.5px; color: #2c2b29; }
 .doc-wrap .updated { color: var(--text-dim); font-size: 13px; margin-top: 44px; border-top: 1px solid var(--line); padding-top: 16px; }
 .doc-wrap .placeholder { background: #fbe9cf; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+/* ---------- contact modal ---------- */
+button.cta { font: inherit; cursor: pointer; border: none; }
+.footer-col button.link-like {
+  display: block; background: none; border: none; padding: 0; margin-bottom: 8px;
+  color: var(--cream-dim); font-size: 14px; font-family: inherit; cursor: pointer; text-align: left;
+}
+.footer-col button.link-like:hover { color: var(--cream); }
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(12,11,10,0.72);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; z-index: 100;
+}
+.modal-overlay[hidden] { display: none; }
+.modal-card {
+  position: relative; width: 100%; max-width: 420px;
+  background: var(--panel); border: 1px solid var(--panel-line);
+  border-radius: var(--radius); padding: 30px; color: var(--cream);
+}
+.modal-card h3 { margin: 0 0 8px; font-size: 20px; color: #fff; }
+.modal-sub { margin: 0 0 20px; font-size: 14px; color: var(--cream-dim); }
+.modal-close {
+  position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+  border-radius: 8px; border: 1px solid var(--panel-line); background: rgba(237,232,222,0.06);
+  color: var(--cream); font-size: 18px; line-height: 1; cursor: pointer;
+}
+.modal-close:hover { background: rgba(237,232,222,0.12); }
+#contactForm label { display: block; font-size: 13px; color: var(--cream-dim); margin-bottom: 14px; }
+#contactForm input, #contactForm textarea {
+  display: block; width: 100%; margin-top: 6px; padding: 10px 12px;
+  background: rgba(237,232,222,0.06); border: 1px solid var(--panel-line);
+  border-radius: 8px; color: var(--cream); font: inherit; resize: vertical;
+}
+#contactForm input:focus, #contactForm textarea:focus { outline: 1px solid var(--amber); border-color: var(--amber); }
+#contactForm button[type="submit"] { width: 100%; justify-content: center; margin-top: 4px; }
+.form-status { margin: 12px 0 0; font-size: 13.5px; }
+.form-status.success { color: var(--amber-strong); }
+.form-status.error { color: #e77; }
