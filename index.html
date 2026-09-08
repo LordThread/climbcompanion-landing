@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Climb Companion — il tuo compagno di arrampicata</title>
-<meta name="description" content="Climb Companion: traccia progetti, sessioni e allenamenti di arrampicata. Tutto sul tuo dispositivo, senza account, senza tracciamento.">
+<meta name="description" content="Climb Companion: traccia progetti, sessioni e allenamenti di arrampicata, registra e confronta i video dei tuoi tentativi. Tutto sul tuo dispositivo, senza account, senza tracciamento.">
 <link rel="icon" href="./favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link rel="stylesheet" href="./style.css">
@@ -32,12 +32,14 @@
     display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; align-items: center;
   }
   .hero-text .brand-mark { width: 44px; height: 44px; border-radius: 11px; margin-bottom: 22px; }
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
   .badge {
     display: inline-block; background: rgba(232,163,61,0.14); color: var(--amber-strong);
     border: 1px solid rgba(232,163,61,0.35);
     font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
-    padding: 6px 14px; border-radius: 20px; margin-bottom: 20px;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 0;
   }
+  .badge-link { text-decoration: none; cursor: pointer; }
   .hero h1 { font-size: 42px; margin: 0 0 16px; letter-spacing: -0.02em; color: #fff; }
   .hero .tagline { font-size: 17.5px; color: var(--cream-dim); max-width: 440px; margin: 0 0 30px; }
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -52,11 +54,12 @@
   /* phone mockup frame, built around real iOS Simulator screenshots */
   .phone-frame {
     position: relative; width: 100%; max-width: 300px; margin: 0 auto;
+    aspect-ratio: 720 / 1561;
     background: linear-gradient(160deg, #34312c, #1a1917);
     border-radius: 40px; padding: 9px;
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(237,232,222,0.06);
   }
-  .phone-frame img { width: 100%; display: block; border-radius: 32px; }
+  .phone-frame img, .phone-frame video { width: 100%; height: 100%; display: block; border-radius: 32px; object-fit: cover; }
   .hero-phone { display: flex; justify-content: center; }
   .hero-phone .phone-frame { max-width: 280px; }
 
@@ -94,11 +97,12 @@
   .price-tag .amount { font-size: 18px; font-weight: 700; color: #fff; }
   .price-tag .period { font-size: 12px; color: var(--cream-dim); }
 
-  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 28px; align-items: start; }
   .gallery-item { text-align: center; }
   .gallery-item .phone-frame { max-width: 230px; }
   .gallery-item p { margin-top: 16px; font-size: 14px; color: var(--cream-dim); }
   .gallery-item strong { color: #fff; display: block; font-size: 15px; margin-top: 2px; }
+
 
   .final-cta { text-align: center; }
   .final-cta h2 { margin-bottom: 22px; }
@@ -145,6 +149,7 @@
     <div class="bar">
       <a class="brand" href="./index.html"><img src="./favicon-32.png" alt=""> Climb Companion</a>
       <nav>
+        <a href="#video">Video</a>
         <a href="#features">Funzionalità</a>
         <a href="#plus">Plus</a>
         <a href="./privacy-it.html">Privacy</a>
@@ -158,7 +163,10 @@
     <div class="hero-grid">
       <div class="hero-text">
         <img class="brand-mark" src="./favicon-32.png" alt="">
-        <span class="badge">Disponibile su App Store</span>
+        <div class="badge-row">
+          <span class="badge">Disponibile su App Store</span>
+          <a class="badge badge-link" href="#video">🎥 Novità: video dei tentativi</a>
+        </div>
         <h1>Climb Companion</h1>
         <p class="tagline">Traccia i tuoi progetti di arrampicata, le sessioni e gli allenamenti — tutto resta sul tuo telefono, senza account e senza pubblicità.</p>
         <div class="cta-row">
@@ -180,6 +188,26 @@
   </div>
 
   <main>
+    <section class="block" id="video">
+      <p class="eyebrow">Novità</p>
+      <h2>Confronta i tuoi tentativi in video</h2>
+      <p class="lede">Registra o importa il video di un tentativo: rivedilo a rallentatore, confrontane due fianco a fianco e fissa il fotogramma esatto su una presa. Sempre e solo sul tuo dispositivo, mai caricati.</p>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="phone-frame"><video src="./video-slowmo-demo.mp4" poster="./screen-video-slowmo.png" autoplay muted loop playsinline></video></div>
+          <p><strong>Rallentatore e loop</strong>Rivedi il movimento a 1×, 0,5× o 0,25×, in loop.</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone-frame"><video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" autoplay muted loop playsinline></video></div>
+          <p><strong>Confronto fianco a fianco</strong>Due tentativi sincronizzati, per vedere cosa cambia.</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone-frame"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" autoplay muted loop playsinline></video></div>
+          <p><strong>Fotogramma sulla presa</strong>Fissa il momento esatto con una nota sul movimento.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="block" id="features">
       <p class="eyebrow">Funzionalità</p>
       <h2>Tutto quello che ti serve in falesia e in palestra</h2>
@@ -287,7 +315,7 @@
     </section>
 
     <section class="block final-cta">
-      <h2>Pronto a scalare con metodo?</h2>
+      <h2>Built by a climber. For Climbers.</h2>
       <div class="cta-row">
         <a class="cta primary" href="https://apps.apple.com/it/app/climb-companion/id6793981358" target="_blank" rel="noopener">Scarica su App Store</a>
       </div>
