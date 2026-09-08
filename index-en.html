@@ -193,15 +193,15 @@
       <p class="lede">Record or import the video of an attempt: replay it in slow motion, compare two side by side, and pin the exact frame to a hold. Always on your device only, never uploaded.</p>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-slowmo-demo.mp4" poster="./screen-video-slowmo.png" autoplay muted loop playsinline></video></div>
+          <div class="phone-frame"><video src="./video-slowmo-demo.mp4" poster="./screen-video-slowmo.png" muted loop playsinline preload="metadata"></video></div>
           <p><strong>Slow motion &amp; loop</strong>Replay the move at 1×, 0.5×, or 0.25×, on loop.</p>
         </div>
         <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" autoplay muted loop playsinline></video></div>
+          <div class="phone-frame"><video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" muted loop playsinline preload="metadata"></video></div>
           <p><strong>Side-by-side comparison</strong>Two synced attempts, to see what changed.</p>
         </div>
         <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" autoplay muted loop playsinline></video></div>
+          <div class="phone-frame"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" muted loop playsinline preload="metadata"></video></div>
           <p><strong>Frame pinned to a hold</strong>Pin the exact moment with a note on the move.</p>
         </div>
       </div>
@@ -414,6 +414,27 @@
           })
           .finally(function () { submitBtn.disabled = false; });
       });
+    })();
+
+    (function () {
+      var videos = document.querySelectorAll('.phone-frame video');
+      if (!videos.length) return;
+      if (!('IntersectionObserver' in window)) {
+        videos.forEach(function (v) { v.play().catch(function () {}); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.25 });
+      videos.forEach(function (v) { io.observe(v); });
     })();
   </script>
 </body>

@@ -194,15 +194,15 @@
       <p class="lede">Registra o importa il video di un tentativo: rivedilo a rallentatore, confrontane due fianco a fianco e fissa il fotogramma esatto su una presa. Sempre e solo sul tuo dispositivo, mai caricati.</p>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-slowmo-demo.mp4" poster="./screen-video-slowmo.png" autoplay muted loop playsinline></video></div>
+          <div class="phone-frame"><video src="./video-slowmo-demo.mp4" poster="./screen-video-slowmo.png" muted loop playsinline preload="metadata"></video></div>
           <p><strong>Rallentatore e loop</strong>Rivedi il movimento a 1×, 0,5× o 0,25×, in loop.</p>
         </div>
         <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" autoplay muted loop playsinline></video></div>
+          <div class="phone-frame"><video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" muted loop playsinline preload="metadata"></video></div>
           <p><strong>Confronto fianco a fianco</strong>Due tentativi sincronizzati, per vedere cosa cambia.</p>
         </div>
         <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" autoplay muted loop playsinline></video></div>
+          <div class="phone-frame"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" muted loop playsinline preload="metadata"></video></div>
           <p><strong>Fotogramma sulla presa</strong>Fissa il momento esatto con una nota sul movimento.</p>
         </div>
       </div>
@@ -415,6 +415,27 @@
           })
           .finally(function () { submitBtn.disabled = false; });
       });
+    })();
+
+    (function () {
+      var videos = document.querySelectorAll('.phone-frame video');
+      if (!videos.length) return;
+      if (!('IntersectionObserver' in window)) {
+        videos.forEach(function (v) { v.play().catch(function () {}); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.25 });
+      videos.forEach(function (v) { io.observe(v); });
     })();
   </script>
 </body>
