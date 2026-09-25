@@ -1,356 +1,1013 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Climb Companion — il tuo compagno di arrampicata</title>
-<meta name="description" content="Climb Companion: traccia progetti, sessioni e allenamenti di arrampicata, registra e confronta i video dei tuoi tentativi. Tutto sul tuo dispositivo, senza account, senza tracciamento.">
-<link rel="icon" href="./favicon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./style.css">
-<style>
-  body { background: var(--ink); }
-  .hero {
-    position: relative;
-    overflow: hidden;
-    background:
-      linear-gradient(180deg, rgba(20,18,15,0.55) 0%, rgba(20,18,15,0.72) 55%, var(--ink) 96%),
-      linear-gradient(100deg, rgba(12,11,10,0.65) 0%, rgba(12,11,10,0.15) 55%),
-      url('./hero-photo.jpg');
-    background-size: cover;
-    background-position: center 35%;
-    color: var(--cream);
-    padding: 76px 24px 40px;
-  }
-  .hero .peaks {
-    position: absolute; left: 0; right: 0; bottom: -2px; height: 140px;
-    background: linear-gradient(180deg, transparent, var(--ink) 92%);
-    pointer-events: none;
-  }
-  .hero-grid {
-    max-width: var(--wrap); margin: 0 auto; position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; align-items: center;
-  }
-  .hero-text .brand-mark { width: 44px; height: 44px; border-radius: 11px; margin-bottom: 22px; }
-  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-  .badge {
-    display: inline-block; background: rgba(232,163,61,0.14); color: var(--amber-strong);
-    border: 1px solid rgba(232,163,61,0.35);
-    font-size: 12.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
-    padding: 6px 14px; border-radius: 20px; margin-bottom: 0;
-  }
-  .badge-link { text-decoration: none; cursor: pointer; }
-  .hero h1 { font-size: 42px; margin: 0 0 16px; letter-spacing: -0.02em; color: #fff; }
-  .hero .tagline { font-size: 17.5px; color: var(--cream-dim); max-width: 440px; margin: 0 0 30px; }
-  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .cta { display: inline-flex; align-items:center; gap:8px; padding: 13px 24px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 15px; transition: transform .15s ease; }
-  .cta:hover { transform: translateY(-1px); }
-  .cta.primary { background: var(--amber); color: #241a05; }
-  .cta.secondary { background: rgba(237,232,222,0.08); color: var(--cream); border: 1px solid rgba(237,232,222,0.18); }
-  .qr-card { display: inline-flex; align-items: center; gap: 12px; margin-top: 22px; background: var(--cream); padding: 10px 16px 10px 10px; border-radius: 14px; text-decoration: none; }
-  .qr-card img { width: 60px; height: 60px; display: block; }
-  .qr-card span { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; max-width: 140px; }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Climb Companion: traccia progetti, sessioni e allenamenti di arrampicata, registra e confronta i video dei tuoi tentativi. Tutto sul tuo dispositivo, senza account, senza tracciamento.">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Climb Companion — Restyling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --card: #1A1A1A;
+      --card-2: #212121;
+      --line: #2C2C2C;
+      --ink: #F4F2EF;
+      --muted: #9C978F;
+      --faint: #6E6A64;
+      --amber: #E9B45E;
+      --amber-deep: #C9913D;
+      --miss: #D2614A;
+      --ok: #5FA98C;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", ui-sans-serif, -apple-system, system-ui, sans-serif;
+      font-size: 16.5px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+      font-variation-settings: "wdth" 82;
+      font-weight: 800;
+      letter-spacing: -.015em;
+      line-height: 1.04;
+      text-wrap: balance;
+    }
+    p { margin: 0; }
+    a { color: inherit; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    section { padding-block: clamp(56px, 8vw, 96px); }
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 8px; }
 
-  /* phone mockup frame, built around real iOS Simulator screenshots */
-  .phone-frame {
-    position: relative; width: 100%; max-width: 300px; margin: 0 auto;
-    aspect-ratio: 720 / 1561;
-    background: linear-gradient(160deg, #34312c, #1a1917);
-    border-radius: 40px; padding: 9px;
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(237,232,222,0.06);
-  }
-  .phone-frame img, .phone-frame video { width: 100%; height: 100%; display: block; border-radius: 32px; object-fit: cover; }
-  .hero-phone { display: flex; justify-content: center; }
-  .hero-phone .phone-frame { max-width: 280px; }
+    .nav {
+      position: absolute;
+      top: env(safe-area-inset-top, 0px);
+      left: 0;
+      right: 0;
+      z-index: 60;
+      transition: background .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.stuck {
+      position: fixed;
+      background: rgba(10,10,10,.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom-color: var(--line);
+    }
+    .nav-in {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      margin-right: auto;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 85;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .logo {
+      width: 23px;
+      height: 23px;
+      flex: none;
+      fill: none;
+      stroke: var(--amber);
+      stroke-width: 2.2;
+      stroke-linejoin: round;
+    }
+    .nav-links { display: none; gap: 30px; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.on { color: var(--amber); }
+    @media (min-width:900px){ .nav-links { display: flex; } }
 
-  main { background: var(--ink); color: var(--cream); }
-  section.block { max-width: var(--wrap); margin: 0 auto; padding: 72px 24px; }
-  section.block + section.block { border-top: 1px solid var(--panel-line); }
-  .eyebrow { color: var(--amber-strong); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-align: center; margin: 0 0 10px; }
-  .block h2 { font-size: 28px; text-align: center; margin: 0 0 12px; color: #fff; letter-spacing: -0.01em; }
-  .block .lede { text-align: center; color: var(--cream-dim); max-width: 520px; margin: 0 auto 44px; font-size: 15.5px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 88;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px 26px;
+      border-radius: 999px;
+      border: 1.5px solid transparent;
+      background: var(--amber);
+      color: #14100A;
+      transition: filter .18s, transform .18s;
+    }
+    .btn:hover { filter: brightness(1.08); transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn-out { background: transparent; color: var(--ink); border-color: rgba(255,255,255,.32); }
+    .btn-out:hover { background: rgba(255,255,255,.07); filter: none; }
+    .nav .btn { padding: 10px 22px; font-size: 12px; }
 
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 20px; }
-  .feature-card { background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px; }
-  .feature-card .ic { width: 30px; height: 30px; color: var(--amber); margin-bottom: 16px; }
-  .feature-card h3 { font-size: 17.5px; margin: 0 0 8px; color: #fff; }
-  .feature-card > p { font-size: 14px; color: var(--cream-dim); margin: 0 0 14px; }
-  .feature-card ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--panel-line); padding-top: 12px; }
-  .feature-card li { font-size: 13.5px; color: var(--cream-dim); padding: 4px 0 4px 18px; position: relative; }
-  .feature-card li::before { content: "＋"; position: absolute; left: 0; top: 4px; color: var(--amber); font-size: 11px; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(96px,16vw,150px) clamp(60px,9vw,104px);
+      background: #070806;
+    }
+    .wallbg { position: absolute; inset: 0; overflow: hidden; }
+    .wallbg .slab {
+      position: absolute;
+      inset: -10%;
+      background:
+        radial-gradient(60% 50% at 18% 30%, rgba(120,88,54,.55), transparent 70%),
+        radial-gradient(55% 45% at 78% 22%, rgba(52,92,86,.42), transparent 72%),
+        radial-gradient(70% 60% at 62% 82%, rgba(88,62,110,.32), transparent 70%),
+        linear-gradient(155deg,#14110D 0%,#0B0C0D 55%,#08090A 100%);
+      filter: blur(2px);
+    }
+    .wallbg .blob {
+      position: absolute;
+      border-radius: 52% 48% 40% 60% / 58% 42% 58% 42%;
+      filter: blur(22px);
+      opacity: .5;
+    }
+    .wallbg .grain {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 4px 4px;
+      opacity: .5;
+    }
+    .wallbg .vig {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 90% at 50% 40%, transparent 30%, rgba(7,8,6,.82) 100%), linear-gradient(to bottom, rgba(7,8,6,.55) 0%, transparent 25%, rgba(10,10,10,.95) 100%);
+    }
+    #dust {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; z-index: 2; }
+    .hero-grid {
+      display: grid;
+      gap: clamp(40px, 7vw, 64px);
+      align-items: center;
+    }
+    @media (min-width:920px){ .hero-grid{ grid-template-columns: 1.08fr .92fr; } }
 
-  .privacy-card { max-width: 760px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: var(--radius); padding: 26px 30px; display: flex; gap: 18px; align-items: flex-start; }
-  .privacy-card .ic-wrap { flex-shrink: 0; width: 42px; height: 42px; border-radius: 11px; background: rgba(232,163,61,0.14); display: flex; align-items: center; justify-content: center; }
-  .privacy-card .ic-wrap svg { width: 21px; height: 21px; color: var(--amber-strong); }
-  .privacy-card h3 { margin: 0 0 6px; font-size: 16.5px; color: #fff; }
-  .privacy-card p { margin: 0; font-size: 14px; color: var(--cream-dim); line-height: 1.5; }
-  .block-compact { padding-top: 44px; padding-bottom: 44px; }
+    .badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: rgba(233,180,94,.14);
+      border: 1px solid rgba(233,180,94,.3);
+      margin-bottom: 24px;
+    }
+    .badge svg {
+      width: 19px;
+      height: 19px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hero h1 { font-size: clamp(40px, 10vw, 72px); line-height: 1.03; }
+    .hero h1 span { color: var(--amber); }
+    .hero .lead {
+      color: #C3BEB6;
+      font-size: clamp(16.5px, 4.2vw, 19px);
+      max-width: 40ch;
+      margin-top: 20px;
+    }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 26px;
+      font-size: 13px;
+      color: #8E8A83;
+    }
+    .trust span { display: inline-flex; align-items: center; gap: 7px; }
+    .trust span::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+    .float { animation: float 7s ease-in-out infinite; }
+    @keyframes float { 0%,100%{ transform: translateY(-8px); } 50% { transform: translateY(8px); } }
 
-  .pricing-card { max-width: 420px; margin: 0 auto; background: var(--panel); border: 1px solid var(--panel-line); border-radius: 18px; padding: 36px; text-align: center; }
-  .pricing-card h3 { font-size: 20px; margin: 0 0 6px; color: #fff; }
-  .pricing-card .sub { color: var(--cream-dim); font-size: 14px; margin-bottom: 22px; }
-  .pricing-card ul { list-style: none; padding: 0; margin: 0 0 26px; text-align: left; display: inline-block; }
-  .pricing-card li { font-size: 14.5px; color: var(--cream); padding: 6px 0; padding-left: 22px; position: relative; }
-  .pricing-card li::before { content: "✓"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
-  .price-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .price-tag { border: 1px solid var(--panel-line); border-radius: 10px; padding: 12px 18px; }
-  .price-tag .amount { font-size: 18px; font-weight: 700; color: #fff; }
-  .price-tag .period { font-size: 12px; color: var(--cream-dim); }
+    .phone {
+      width: min(280px, 72vw);
+      aspect-ratio: 9 / 19.3;
+      flex: none;
+      margin-inline: auto;
+      border-radius: 44px;
+      padding: 8px;
+      background: #111;
+      box-shadow: 0 48px 90px -40px rgba(0,0,0,.9), 0 0 0 1px #2E2E2E inset;
+    }
+    .screen {
+      height: 100%;
+      border-radius: 37px;
+      overflow: hidden;
+      background: #0A0A0A;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+    .screen img, .screen video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      background: #111;
+    }
+    .sbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px 2px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .sbar .sig { display: flex; gap: 2.5px; align-items: flex-end; }
+    .sbar .sig i {
+      width: 3px;
+      background: var(--ink);
+      border-radius: 1px;
+      display: block;
+    }
+    .sbody { flex: 1; padding: 6px 14px 0; display: flex; flex-direction: column; gap: 11px; overflow: hidden; }
+    .shead { display: flex; align-items: center; justify-content: space-between; }
+    .stitle {
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 80;
+      font-weight: 800;
+      font-size: 25px;
+      letter-spacing: -.015em;
+    }
+    .ring {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1.6px solid var(--amber);
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+    .ring svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    .hcard {
+      background: var(--card);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .wallphoto {
+      height: 76px;
+      position: relative;
+      background: linear-gradient(120deg,#8C8F92,#B9BCBE 45%,#9DA0A2);
+      overflow: hidden;
+    }
+    .wallphoto .beam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 32%;
+      background: linear-gradient(150deg,#9A5A33,#6E3E22);
+      clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%);
+    }
+    .hld { position: absolute; border-radius: 54% 46% 42% 58% / 58% 42% 58% 42%; }
+    .hcard-b { padding: 11px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .prow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .pname {
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 82;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -.01em;
+    }
+    .pago { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+    .gauge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      flex: none;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--amber) 0 62%, #2E2E2E 62%);
+      position: relative;
+    }
+    .gauge::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--card);
+    }
+    .gauge b {
+      position: relative;
+      z-index: 1;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 85;
+      font-weight: 700;
+      font-size: 12.5px;
+    }
+    .lbl {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 8.5px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .esiti { display: flex; gap: 5px; }
+    .esiti i { flex: 1; height: 3px; border-radius: 2px; background: #3A3A3A; display: block; }
+    .esiti i.miss { background: var(--miss); }
+    .esiti i.ok { background: var(--ok); }
+    .meta-m { font-family: "JetBrains Mono", monospace; font-size: 9.5px; color: var(--muted); }
+    .appbtn {
+      background: var(--amber);
+      color: #14100A;
+      border-radius: 12px;
+      text-align: center;
+      padding: 9px;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 86;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .duo { display: flex; gap: 9px; }
+    .duo div { flex: 1; background: var(--card); border: 1px solid #242424; border-radius: 15px; padding: 10px 11px; }
+    .duo b {
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 82;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -.02em;
+    }
+    .duo em { font-style: normal; font-size: 11px; color: var(--muted); margin-left: 3px; }
+    .duo span { display: block; font-size: 9.5px; color: var(--faint); margin-top: 1px; }
+    .chips { display: flex; gap: 7px; }
+    .chip {
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 10.5px;
+      font-weight: 600;
+      background: #242424;
+      color: var(--muted);
+    }
+    .chip.on { background: var(--amber); color: #14100A; }
+    .tabbar {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 11px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: rgba(38,38,38,.82);
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+      padding: 7px 4px;
+      border: 1px solid #333;
+    }
+    .tabbar span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 8px;
+      color: var(--muted);
+    }
+    .tabbar span.on { color: var(--amber); }
+    .tabbar svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 28px; align-items: start; }
-  .gallery-item { text-align: center; }
-  .gallery-item .phone-frame { max-width: 230px; }
-  .gallery-item p { margin-top: 16px; font-size: 14px; color: var(--cream-dim); }
-  .gallery-item strong { color: #fff; display: block; font-size: 15px; margin-top: 2px; }
+    .sechead { text-align: center; max-width: 620px; margin-inline: auto; }
+    .sechead h2 {
+      font-size: clamp(25px, 5.6vw, 40px);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-variation-settings: "wdth" 88;
+    }
+    .rule { width: 68px; height: 2px; background: var(--amber); margin: 20px auto; border-radius: 2px; }
+    .sechead p { color: var(--muted); font-size: clamp(15.5px, 3.8vw, 17.5px); }
 
+    .cf {
+      --cf-w: min(250px, 58vw);
+      position: relative;
+      margin-top: clamp(36px,6vw,56px);
+      perspective: 1700px;
+      height: calc(var(--cf-w) * 2.145 + 16px);
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+    .cf-track { position: relative; height: 100%; transform-style: preserve-3d; }
+    .cf-item {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: var(--cf-w);
+      transition: transform .55s cubic-bezier(.25,.8,.3,1), opacity .55s ease, filter .55s ease;
+      will-change: transform, opacity;
+    }
+    .cf-item .phone { width: 100%; margin: 0; }
+    .cf-item.hide { opacity: 0; pointer-events: none; }
+    .cf-arrow {
+      position: absolute;
+      top: 50%;
+      translate: 0 -50%;
+      z-index: 8;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: rgba(26,26,26,.82);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(8px);
+      transition: background .2s, border-color .2s;
+    }
+    .cf-arrow:hover { background: var(--amber); color: #14100A; border-color: var(--amber); }
+    .cf-arrow svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .cf-prev { left: 2px; }
+    .cf-next { right: 2px; }
+    @media (min-width:760px){ .cf-prev { left: 18px; } .cf-next { right: 18px; } }
+    .cf-cap { text-align: center; margin-top: 26px; min-height: 96px; }
+    .cf-cap b {
+      display: block;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 84;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
+    }
+    .cf-cap p { color: var(--muted); font-size: 15.5px; max-width: 42ch; margin-inline: auto; }
+    .dots { display: flex; gap: 7px; justify-content: center; margin-top: 18px; }
+    .dots button {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: #333;
+      transition: background .25s, width .25s;
+    }
+    .dots button.on { background: var(--amber); width: 22px; border-radius: 99px; }
 
-  .final-cta { text-align: center; }
-  .final-cta h2 { margin-bottom: 22px; }
-  .final-cta .cta-row { justify-content: center; }
+    .band { background: #0E0E0E; border-block: 1px solid var(--line); }
+    .player { margin-top: clamp(30px,5vw,44px); max-width: 420px; margin-inline: auto; }
+    .stage {
+      display: flex;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #000;
+      width: min(100%, 420px);
+      margin-inline: auto;
+      aspect-ratio: 9 / 16;
+    }
+    .panel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    .panel video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      background: #000;
+    }
+    .ptag {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9.5px;
+      letter-spacing: .04em;
+      color: #EFEFEF;
+      background: rgba(0,0,0,.6);
+      border-radius: 7px;
+      padding: 4px 8px;
+    }
 
-  .editorial-break {
-    position: relative; min-height: 340px; margin: 0;
-    background:
-      linear-gradient(90deg, rgba(12,11,10,0.88) 0%, rgba(12,11,10,0.35) 60%, rgba(12,11,10,0.1) 100%),
-      url('./editorial-photo.jpg');
-    background-size: cover; background-position: center;
-    display: flex; align-items: center;
-  }
-  .editorial-break .inner { max-width: var(--wrap); margin: 0 auto; padding: 48px 24px; width: 100%; }
-  .editorial-break blockquote { margin: 0; max-width: 440px; font-size: 22px; line-height: 1.4; color: #fff; font-weight: 600; letter-spacing: -0.01em; }
-  .editorial-break cite { display: block; margin-top: 14px; font-size: 13.5px; color: var(--cream-dim); font-style: normal; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: clamp(32px, 5vw, 44px);
+    }
+    @media (min-width:720px){ .stats { grid-template-columns: repeat(4, 1fr); } }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .stat b {
+      display: block;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 82;
+      font-weight: 800;
+      font-size: clamp(26px,5vw,34px);
+      letter-spacing: -.03em;
+      color: var(--amber);
+    }
+    .stat span { display: block; font-size: 13px; color: var(--muted); margin-top: 5px; }
 
-  footer { background: #17130f; color: var(--cream-dim); padding: 56px 24px 32px; }
-  .footer-grid { max-width: var(--wrap); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
-  .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--cream); font-weight: 700; margin-bottom: 10px; }
-  .footer-brand img { width: 26px; height: 26px; border-radius: 6px; }
-  .footer-col h4 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--cream-dim); margin: 0 0 12px; }
-  .footer-col a { display: block; color: var(--cream-dim); text-decoration: none; font-size: 14px; margin-bottom: 8px; }
-  .footer-col a:hover { color: var(--cream); }
-  .footer-bottom { max-width: var(--wrap); margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--panel-line); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  @media (max-width: 800px) {
-    .hero-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero-text { display: flex; flex-direction: column; align-items: center; }
-    .hero-phone { order: -1; margin-bottom: 12px; }
-    .gallery-grid { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
-  }
-  @media (max-width: 640px) {
-    .footer-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 32px; }
-    .site-header nav { gap: 12px; }
-    .site-header nav a:not(.pill) { display: none; }
-    .editorial-break { min-height: 260px; }
-    .editorial-break blockquote { font-size: 18px; }
-  }
-</style>
+    .privacy {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: clamp(26px,5vw,40px);
+      text-align: center;
+      max-width: 820px;
+      margin-inline: auto;
+    }
+    .privacy h2 { font-size: clamp(23px,5.2vw,33px); }
+    .privacy p { color: var(--muted); margin-top: 16px; max-width: 52ch; margin-inline: auto; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 24px; }
+    .pill {
+      font-size: 13.5px;
+      color: var(--muted);
+      background: var(--card-2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+    }
+
+    .plan {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: clamp(24px,5vw,36px);
+      margin-top: clamp(30px,5vw,42px);
+      display: grid;
+      gap: 26px;
+    }
+    @media (min-width:820px){ .plan { grid-template-columns: 1.1fr .9fr; align-items: center; } }
+    .list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .list li { position: relative; padding-left: 26px; color: var(--muted); font-size: 15.5px; }
+    .list li svg {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      width: 15px;
+      height: 15px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .prices { display: flex; gap: 10px; }
+    .price {
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 15px;
+      text-align: center;
+      background: var(--card-2);
+    }
+    .price.best { border-color: var(--amber); }
+    .price .amt {
+      display: block;
+      font-family: "Archivo", sans-serif;
+      font-variation-settings: "wdth" 82;
+      font-weight: 800;
+      font-size: 25px;
+      letter-spacing: -.025em;
+    }
+    .price .per { font-size: 12.5px; color: var(--muted); }
+    .price .ex {
+      display: block;
+      margin-top: 8px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .close {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      background: #070806;
+    }
+    .close .wallbg .slab { filter: blur(3px); }
+    .close .wrap { position: relative; z-index: 2; }
+    .close h2 { font-size: clamp(28px,7vw,50px); }
+    .close p { color: #C3BEB6; margin-block: 16px 28px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding-block: 38px 48px;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+    .foot { display: grid; gap: 26px; }
+    @media (min-width:700px){ .foot { grid-template-columns: 1.6fr 1fr 1fr; } }
+    footer h4 { font-size: 12px; font-weight: 600; color: var(--ink); margin: 0 0 12px; letter-spacing: .1em; text-transform: uppercase; }
+    footer nav { display: flex; flex-direction: column; gap: 9px; }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--amber); }
+    .link-like {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 0;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    .link-like:hover { color: var(--amber); }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 6, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      z-index: 120;
+    }
+    .modal-overlay[hidden] { display: none; }
+    .modal-card {
+      width: min(100%, 500px);
+      background: #171717;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px 20px 18px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .modal-card h3 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 4vw, 30px);
+      letter-spacing: -.03em;
+    }
+    .modal-sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .modal-card form {
+      display: grid;
+      gap: 12px;
+    }
+    .modal-card label {
+      display: grid;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .modal-card input,
+    .modal-card textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--card-2);
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font: inherit;
+      resize: vertical;
+    }
+    .modal-card button[type="submit"] {
+      margin-top: 6px;
+      justify-self: start;
+    }
+    .form-status {
+      margin: 0;
+      font-size: 13px;
+      min-height: 18px;
+    }
+    .form-status.success { color: var(--ok); }
+    .form-status.error { color: var(--miss); }
+    .copy {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--faint);
+    }
+
+    .anim .rv { opacity: 0; transform: translateY(18px); }
+    .anim .rv.in { opacity: 1; transform: none; transition: opacity .65s ease, transform .65s cubic-bezier(.2,.8,.3,1); }
+    @media (prefers-reduced-motion: reduce) {
+      .anim .rv { opacity: 1 !important; transform: none !important; }
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="bar">
-      <a class="brand" href="./index.html"><img src="./favicon-32.png" alt=""> Climb Companion</a>
-      <nav>
+  <header class="nav" id="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="#top">
+        <img src="./favicon-32.png" alt="Climb Companion" style="width:22px;height:22px;border-radius:8px;display:block;">
+        Climb Companion
+      </a>
+      <div class="nav-links">
+        <a href="#top" class="on">Home</a>
         <a href="#video">Video</a>
-        <a href="#features">Funzionalità</a>
+        <a href="#showcase">Showcase</a>
         <a href="#plus">Plus</a>
-        <a href="./privacy-it.html">Privacy</a>
-        <a href="./terms-it.html">Termini</a>
-        <a class="pill" href="./index-en.html">EN</a>
-      </nav>
+      </div>
+      <a class="btn" href="https://apps.apple.com/it/app/climb-companion/id6793981358">Scarica</a>
     </div>
   </header>
 
-  <div class="hero">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <img class="brand-mark" src="./favicon-32.png" alt="">
-        <div class="badge-row">
-          <span class="badge">Disponibile su App Store</span>
-          <a class="badge badge-link" href="#video">🎥 Novità: video dei tentativi</a>
-        </div>
-        <h1>Climb Companion</h1>
-        <p class="tagline">Traccia i tuoi progetti di arrampicata, le sessioni e gli allenamenti — tutto resta sul tuo telefono, senza account e senza pubblicità.</p>
-        <div class="cta-row">
-          <a class="cta primary" href="https://apps.apple.com/it/app/climb-companion/id6793981358" target="_blank" rel="noopener">Scarica su App Store</a>
-          <a class="cta secondary" href="#features">Scopri l'app</a>
-        </div>
-        <a class="qr-card" href="https://apps.apple.com/it/app/climb-companion/id6793981358" target="_blank" rel="noopener">
-          <img src="./qr-appstore.svg" alt="QR code per scaricare Climb Companion su App Store">
-          <span>Inquadra il QR code<br>per scaricare l'app</span>
-        </a>
+  <main id="top">
+    <section class="hero">
+      <div class="wallbg" aria-hidden="true">
+        <div class="slab"></div>
+        <span class="blob" style="left:8%;top:22%;width:120px;height:86px;background:#6E4A86"></span>
+        <span class="blob" style="left:26%;top:62%;width:150px;height:100px;background:#3E9B93"></span>
+        <span class="blob" style="left:66%;top:16%;width:130px;height:92px;background:#3E9B93;opacity:.35"></span>
+        <span class="blob" style="left:82%;top:70%;width:170px;height:110px;background:#C97B3A;opacity:.4"></span>
+        <span class="blob" style="left:48%;top:40%;width:110px;height:80px;background:#8A5A2E;opacity:.35"></span>
+        <div class="grain"></div>
+        <canvas id="dust"></canvas>
+        <div class="vig"></div>
       </div>
-      <div class="hero-phone">
-        <div class="phone-frame">
-          <img src="./screen-projects.png" alt="Schermata Progetti di Climb Companion">
-        </div>
-      </div>
-    </div>
-    <div class="peaks"></div>
-  </div>
 
-  <main>
-    <section class="block" id="video">
-      <p class="eyebrow">Novità</p>
-      <h2>Confronta i tuoi tentativi in video</h2>
-      <p class="lede">Registra o importa il video di un tentativo: rivedilo a rallentatore, confrontane due fianco a fianco e fissa il fotogramma esatto su una presa. Sempre e solo sul tuo dispositivo, mai caricati.</p>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-slowmo-demo.mp4" poster="./screen-video-slowmo.png" muted loop playsinline preload="metadata"></video></div>
-          <p><strong>Rallentatore e loop</strong>Rivedi il movimento a 1×, 0,5× o 0,25×, in loop.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" muted loop playsinline preload="metadata"></video></div>
-          <p><strong>Confronto fianco a fianco</strong>Due tentativi sincronizzati, per vedere cosa cambia.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="phone-frame"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" muted loop playsinline preload="metadata"></video></div>
-          <p><strong>Fotogramma sulla presa</strong>Fissa il momento esatto con una nota sul movimento.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="features">
-      <p class="eyebrow">Funzionalità</p>
-      <h2>Tutto quello che ti serve in falesia e in palestra</h2>
-      <p class="lede">Quattro moduli pensati per chi si allena sul serio, senza fronzoli e senza distrazioni social.</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l6-16 4 10 3-6 3 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Progetti</h3>
-          <p>Segui una via o un blocco su più sessioni: tentativi, note, foto e progressi in un unico posto.</p>
-          <ul>
-            <li>Grado massimo per boulder e vie, sempre in evidenza</li>
-            <li>Storico tentativi con esito ed evoluzione</li>
-            <li>Foto e note per ogni progetto</li>
-          </ul>
-        </div>
-        <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h2M18 12h2M7 12h10M7 8v8M17 8v8" stroke-linecap="round"/></svg>
-          <h3>Allenamento manuale</h3>
-          <p>Crea i tuoi esercizi e le tue schede, registra serie, ripetizioni e carichi come preferisci.</p>
-          <ul>
-            <li>Schede su misura: mobilità, hangboard, forza dita</li>
-            <li>Nessun template imposto, decidi tu cosa allenare</li>
-            <li>Log rapido di serie e ripetizioni durante la sessione</li>
-          </ul>
-        </div>
-        <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M11 20V4M18 20v-7" stroke-linecap="round"/></svg>
-          <h3>Sessioni</h3>
-          <p>Analisi per categoria, scala dei gradi, volume e frequenza — per capire davvero come stai progredendo.</p>
-          <ul>
-            <li>Storico completo di ogni sessione registrata</li>
-            <li>Mix per categoria: forza, tecnica, mobilità, antagonisti</li>
-            <li>Andamento settimanale con media mobile</li>
-          </ul>
-        </div>
-        <div class="feature-card">
-          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg>
-          <h3>Challenge</h3>
-          <p>Datti obiettivi personali e tienine traccia nel tempo, con promemoria gestiti direttamente dal telefono.</p>
-          <ul>
-            <li>Obiettivi settimanali su misura (es. 3 sessioni tecnica)</li>
-            <li>Avanzamento visibile a colpo d'occhio</li>
-            <li>Promemoria automatici, nessuna app esterna</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <div class="editorial-break">
-      <div class="inner">
-        <blockquote>"Il progetto giusto non è quello più facile. È quello su cui torni, sessione dopo sessione."</blockquote>
-        <cite>Climb Companion — pensato per chi lavora sui propri progetti nel tempo.</cite>
-      </div>
-    </div>
-
-    <section class="block">
-      <p class="eyebrow">L'app</p>
-      <h2>Com'è fatta, davvero</h2>
-      <p class="lede">Screen reali dell'app: le tue schede di allenamento, storico sessioni e analisi dei progressi.</p>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <div class="phone-frame"><img src="./screen-training.png" alt="Elenco delle schede di allenamento"></div>
-          <p><strong>Allenamento manuale</strong>Le tue schede — mobilità, riscaldamento, hangboard e forza dita.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="phone-frame"><img src="./screen-sessions.png" alt="Storico sessioni con obiettivo Challenge"></div>
-          <p><strong>Storico e Challenge</strong>Sessioni recenti e obiettivi settimanali in un colpo d'occhio.</p>
-        </div>
-        <div class="gallery-item">
-          <div class="phone-frame"><img src="./screen-analytics.png" alt="Analisi delle sessioni con grafico settimanale"></div>
-          <p><strong>Analisi progressi</strong>Streak, grado massimo e volume settimanale.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block block-compact">
-      <div class="privacy-card">
-        <div class="ic-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke-linecap="round"/></svg>
-        </div>
+      <div class="wrap hero-grid">
         <div>
-          <h3>I tuoi dati restano tuoi</h3>
-          <p>Niente account da creare, niente pubblicità, niente dati condivisi con terzi. Tutto quello che registri resta sul tuo telefono — lo condividi con altri solo se e quando lo decidi tu, con un export manuale.</p>
+          <span class="badge">
+            <img src="./favicon-32.png" alt="Climb Companion" style="width:19px;height:19px;border-radius:6px;display:block;">
+          </span>
+          <h1>Ogni tentativo<br>ha <span>qualcosa</span><br>da dirti.</h1>
+          <p class="lead">Progetti, sessioni e allenamenti di arrampicata in un'app sola. E ora il video dei tentativi, per guardare il movimento invece di ricordarselo.</p>
+          <div class="cta">
+            <a class="btn" href="https://apps.apple.com/it/app/climb-companion/id6793981358">Scarica su App Store</a>
+            <a class="btn btn-out" href="#video">Guarda il confronto</a>
+          </div>
+          <div class="trust">
+            <span>Gratis, senza account</span>
+            <span>Nessuna pubblicità</span>
+            <span>Tutto sul telefono</span>
+          </div>
+        </div>
+
+        <div class="float">
+          <div class="phone">
+            <div class="screen">
+              <img src="./screen-projects.png" alt="Schermata dei progetti di Climb Companion" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="block" id="plus">
-      <p class="eyebrow">Abbonamento</p>
-      <h2>Climb Companion Plus</h2>
-      <p class="lede">Per chi vuole analizzare a fondo i propri progressi.</p>
-      <div class="pricing-card">
-        <h3>Plus</h3>
-        <p class="sub">Sblocca l'analisi completa dei tuoi allenamenti</p>
-        <ul>
-          <li>Piramide dei gradi e analisi vie/blocchi</li>
-          <li>Analisi sessioni avanzata (categoria, gradi, volume, frequenza)</li>
-          <li>Progetti e schede illimitati</li>
-        </ul>
-        <div class="price-row">
-          <div class="price-tag"><div class="amount">2,49 €</div><div class="period">al mese · 7gg di prova</div></div>
-          <div class="price-tag"><div class="amount">14,99 €</div><div class="period">all'anno</div></div>
+    <section class="band" id="video">
+      <div class="wrap">
+        <div class="sechead rv">
+          <h2>Confronta due tentativi</h2>
+          <div class="rule"></div>
+          <p>Il confronto mostra il confronto reale tra due tentativi esportato direttamente dall'app, così puoi osservare il movimento con il massimo dettaglio.</p>
+        </div>
+
+        <div class="player rv">
+          <div class="stage" aria-label="Video confronto tra due tentativi registrato dall'app">
+            <div class="panel" style="width:100%;">
+              <video src="./video-compare-demo.mp4" poster="./screen-video-compare.png" controls playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;"></video>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="block final-cta">
-      <h2>Built by a climber. For Climbers.</h2>
-      <div class="cta-row">
-        <a class="cta primary" href="https://apps.apple.com/it/app/climb-companion/id6793981358" target="_blank" rel="noopener">Scarica su App Store</a>
+    <section id="showcase">
+      <div class="wrap">
+        <div class="sechead rv">
+          <h2>Fatta per chi si allena</h2>
+          <div class="rule"></div>
+          <p>Cinque schermate, nessun feed. Trascina o usa le frecce.</p>
+        </div>
+      </div>
+
+      <div class="cf" id="cf">
+        <button class="cf-arrow cf-prev" id="cfPrev" aria-label="Schermata precedente">
+          <svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <button class="cf-arrow cf-next" id="cfNext" aria-label="Schermata successiva">
+          <svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+
+        <div class="cf-track" id="cfTrack">
+          <div class="cf-item" data-title="Progetti" data-desc="Ogni via e ogni blocco seguito su tutte le sessioni che servono, con esiti e note.">
+            <div class="phone"><div class="screen"><img src="./screen-projects.png" alt="Progetti in Climb Companion"></div></div>
+          </div>
+
+          <div class="cf-item" data-title="Video del tentativo" data-desc="Rallentatore, loop e fotogramma fissato sulla presa, agganciati al tentativo giusto.">
+            <div class="phone"><div class="screen"><video src="./video-pin-demo.mp4" poster="./screen-video-pin.png" muted loop playsinline autoplay preload="metadata"></video></div></div>
+          </div>
+
+          <div class="cf-item" data-title="Allenamenti" data-desc="Le schede le crei tu: esercizi, serie e carichi registrati durante la sessione.">
+            <div class="phone"><div class="screen"><img src="./screen-training.png" alt="Schede di allenamento in Climb Companion"></div></div>
+          </div>
+
+          <div class="cf-item" data-title="Sessioni" data-desc="Volume, frequenza e mix per categoria, senza tenere un foglio a parte.">
+            <div class="phone"><div class="screen"><img src="./screen-sessions.png" alt="Storico sessioni di Climb Companion"></div></div>
+          </div>
+
+          <div class="cf-item" data-title="Analisi" data-desc="Piramide dei gradi e analisi avanzata delle sessioni, con Climb Companion Plus.">
+            <div class="phone"><div class="screen"><img src="./screen-analytics.png" alt="Analisi avanzate delle sessioni di Climb Companion"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="cf-cap" id="cfCap"><b>Progetti</b><p>Ogni via e ogni blocco seguito su tutte le sessioni che servono, con esiti e note.</p></div>
+        <div class="dots" id="cfDots"></div>
+
+        <div class="stats rv">
+          <div class="stat"><b>4</b><span>moduli nell'app</span></div>
+          <div class="stat"><b>0</b><span>account richiesti</span></div>
+          <div class="stat"><b>0</b><span>video caricati online</span></div>
+          <div class="stat"><b>100%</b><span>offline</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" style="padding-block:clamp(48px,7vw,76px)">
+      <div class="wrap">
+        <div class="privacy rv">
+          <h2>I video non escono dal telefono</h2>
+          <p>Niente account, niente pubblicità, niente dati condivisi con terzi. I video restano nell'area riservata dell'app, senza audio e senza caricamenti: escono solo se sei tu a condividerli.</p>
+          <div class="pills">
+            <span class="pill">Nessun account</span>
+            <span class="pill">Nessun tracciamento</span>
+            <span class="pill">Video solo sul dispositivo</span>
+            <span class="pill">Export manuale</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plus">
+      <div class="wrap">
+        <div class="sechead rv">
+          <h2>Climb Companion Plus</h2>
+          <div class="rule"></div>
+          <p>Per chi vuole analizzare a fondo i propri progressi</p>
+        </div>
+        <div class="plan rv">
+          <div>
+            <ul class="list">
+              <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 2"/></svg>Analisi dei tentativi con confronto storico</li>
+              <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 2"/></svg>Piramide dei gradi e trend per sessione</li>
+              <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 2"/></svg>Esportazione e dashboard personalizzate</li>
+            </ul>
+          </div>
+          <div>
+            <div class="prices">
+              <div class="price">
+                <span class="amt">€2,49</span>
+                <span class="per">/mese</span>
+                <span class="ex">7 giorni di prova</span>
+              </div>
+              <div class="price best">
+                <span class="amt">€14,99</span>
+                <span class="per">/anno</span>
+                <span class="ex">Miglior prezzo</span>
+              </div>
+            </div>
+            <p style="margin:12px 0 0;color:var(--muted);font-size:12px;text-align:center">La prova gratuita di 7 giorni è disponibile scegliendo il piano mensile.</p>
+            <a class="btn" style="width:100%;margin-top:13px" href="https://apps.apple.com/it/app/climb-companion/id6793981358">Prova Plus: 7 giorni gratis con il mensile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="close">
+      <div class="wallbg" aria-hidden="true">
+        <div class="slab"></div>
+        <span class="blob" style="left:14%;top:30%;width:150px;height:100px;background:#6E4A86;opacity:.35"></span>
+        <span class="blob" style="left:74%;top:44%;width:170px;height:110px;background:#C97B3A;opacity:.35"></span>
+        <div class="grain"></div>
+        <div class="vig"></div>
+      </div>
+      <div class="wrap">
+        <h2 class="rv">Fatta da un arrampicatore,<br>per chi arrampica.</h2>
+        <p class="rv">Gratis, senza account. Plus quando ti servono i numeri.</p>
+        <a class="btn rv" href="https://apps.apple.com/it/app/climb-companion/id6793981358">Scarica su App Store</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand"><img src="./favicon-32.png" alt=""> Climb Companion</div>
-        <p style="font-size:14px; max-width:280px;">L'app per tracciare progetti, sessioni e allenamenti di arrampicata, tutta sul tuo dispositivo.</p>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#top" style="margin-bottom:14px">
+            <img src="./favicon-32.png" alt="Climb Companion" style="width:22px;height:22px;border-radius:8px;display:block;">
+            Climb Companion
+          </a>
+          <p style="max-width:32ch">Progetti, sessioni e allenamenti di arrampicata. Tutto sul tuo dispositivo.</p>
+        </div>
+        <div>
+          <h4>Prodotto</h4>
+          <nav><a href="#video">Video</a><a href="#showcase">Showcase</a><a href="#plus">Plus</a></nav>
+        </div>
+        <div>
+          <h4>Legale</h4>
+          <nav><a href="./privacy-it.html">Privacy</a><a href="./terms-it.html">Termini</a><button type="button" class="link-like" data-open-contact>Contatti</button></nav>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Prodotto</h4>
-        <a href="#features">Funzionalità</a>
-        <a href="#plus">Plus</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legale</h4>
-        <a href="./privacy-it.html">Informativa sulla Privacy</a>
-        <a href="./terms-it.html">Termini di Servizio</a>
-        <button type="button" class="link-like" data-open-contact>Contatti</button>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Climb Companion</span>
-      <a href="./index-en.html">English version →</a>
+      <div class="copy"><span>© 2026 Climb Companion</span><a href="./index-en.html">English version →</a></div>
     </div>
   </footer>
 
   <div class="modal-overlay" id="contactModal" hidden>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
       <button type="button" class="modal-close" id="contactModalClose" aria-label="Chiudi">&times;</button>
-      <h3 id="contactModalTitle">Scrivici</h3>
-      <p class="modal-sub">Lascia il tuo messaggio: ti risponderemo a climb.companion.app@gmail.com.</p>
+      <h3 id="contactModalTitle">Contattaci</h3>
+      <p class="modal-sub">Scrivici un messaggio e ti risponderemo a climb.companion.app@gmail.com.</p>
       <form id="contactForm">
         <label>Nome
           <input type="text" name="name" required>
@@ -362,7 +1019,7 @@
           <textarea name="message" rows="4" required></textarea>
         </label>
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <button type="submit" class="cta primary">Invia</button>
+        <button type="submit" class="btn">Invia</button>
         <p class="form-status" id="contactFormStatus" hidden></p>
       </form>
     </div>
@@ -370,6 +1027,13 @@
 
   <script>
     (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var nav = document.getElementById('nav');
+      function onScroll(){ nav.classList.toggle('stuck', window.scrollY > 70); }
+      window.addEventListener('scroll', onScroll, {passive: true});
+      onScroll();
+
       var modal = document.getElementById('contactModal');
       var form = document.getElementById('contactForm');
       var status = document.getElementById('contactFormStatus');
@@ -403,39 +1067,140 @@
         })
           .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
           .then(function () {
-            status.textContent = 'Messaggio inviato! Ti risponderemo presto.';
+            status.textContent = 'Messaggio inviato. Ti risponderemo al più presto.';
             status.className = 'form-status success';
             status.hidden = false;
             form.reset();
           })
           .catch(function () {
-            status.textContent = 'Invio non riuscito. Riprova oppure scrivi a climb.companion.app@gmail.com.';
+            status.textContent = 'Qualcosa non ha funzionato. Riprova oppure scrivi a climb.companion.app@gmail.com.';
             status.className = 'form-status error';
             status.hidden = false;
           })
           .finally(function () { submitBtn.disabled = false; });
       });
-    })();
 
-    (function () {
-      var videos = document.querySelectorAll('.phone-frame video');
-      if (!videos.length) return;
-      if (!('IntersectionObserver' in window)) {
-        videos.forEach(function (v) { v.play().catch(function () {}); });
-        return;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var v = entry.target;
-          if (entry.isIntersecting) {
-            var p = v.play();
-            if (p && p.catch) p.catch(function () {});
-          } else {
-            v.pause();
+      var cv = document.getElementById('dust');
+      if (cv && !reduce) {
+        var ctx = cv.getContext('2d'), motes = [], W = 0, H = 0;
+        function size(){
+          var r = cv.parentNode.getBoundingClientRect();
+          W = cv.width = r.width; H = cv.height = r.height;
+          motes = [];
+          var n = Math.min(70, Math.round(W * H / 16000));
+          for (var i=0; i<n; i++) {
+            motes.push({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              r: Math.random() * 1.8 + 0.6,
+              vx: (Math.random() - 0.5) * 0.4,
+              vy: (Math.random() - 0.5) * 0.4
+            });
           }
+        }
+        function tick(){
+          ctx.clearRect(0,0,W,H);
+          for (var i=0; i<motes.length; i++) {
+            var m = motes[i];
+            m.x += m.vx; m.y += m.vy;
+            if (m.x < 0 || m.x > W) m.vx *= -1;
+            if (m.y < 0 || m.y > H) m.vy *= -1;
+            ctx.beginPath(); ctx.fillStyle = 'rgba(255,255,255,.38)'; ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2); ctx.fill();
+          }
+          requestAnimationFrame(tick);
+        }
+        size();
+        window.addEventListener('resize', size);
+        requestAnimationFrame(tick);
+      }
+
+      var comparisonVideo = document.querySelector('#video video');
+      if (comparisonVideo) {
+        function syncVideoAspect(){
+          var ratio = comparisonVideo.videoWidth && comparisonVideo.videoHeight ? comparisonVideo.videoWidth / comparisonVideo.videoHeight : 9 / 16;
+          comparisonVideo.parentElement.style.aspectRatio = ratio.toFixed(4);
+        }
+        comparisonVideo.addEventListener('loadedmetadata', syncVideoAspect);
+        window.addEventListener('resize', syncVideoAspect);
+        syncVideoAspect();
+      }
+
+      var track = document.getElementById('cfTrack');
+      var items = Array.prototype.slice.call(track.querySelectorAll('.cf-item'));
+      var cap = document.getElementById('cfCap');
+      var dots = document.getElementById('cfDots');
+      var idx = 0;
+      items.forEach(function(_, i){
+        var b = document.createElement('button');
+        b.setAttribute('aria-label', 'Schermata ' + (i+1));
+        if (i === 0) b.className = 'on';
+        b.addEventListener('click', function(){ go(i); });
+        dots.appendChild(b);
+      });
+      var dotBtns = Array.prototype.slice.call(dots.children);
+
+      function layout(){
+        var narrow = window.innerWidth < 760;
+        var spread = narrow ? 74 : 84;
+        var far = narrow ? 1 : 2;
+        items.forEach(function(el, i){
+          var d = i - idx;
+          var ad = Math.abs(d);
+          if (ad > far) {
+            el.classList.add('hide');
+            return;
+          }
+          el.classList.remove('hide');
+          var x = -50 + d * spread;
+          var rot = d === 0 ? 0 : (d > 0 ? -38 : 38);
+          var z = d === 0 ? 0 : -190 - (ad-1) * 130;
+          var sc = d === 0 ? 1 : 0.88 - (ad-1) * 0.1;
+          el.style.transform = 'translateX(' + x + '%) translateZ(' + z + 'px) rotateY(' + rot + 'deg) scale(' + sc + ')';
+          el.style.opacity = d === 0 ? 1 : (ad === 1 ? .62 : .26);
+          el.style.filter = d === 0 ? 'none' : 'brightness(.6)';
+          el.style.zIndex = String(10 - ad);
         });
-      }, { threshold: 0.25 });
-      videos.forEach(function (v) { io.observe(v); });
+        cap.innerHTML = '<b>' + items[idx].dataset.title + '</b><p>' + items[idx].dataset.desc + '</p>';
+        dotBtns.forEach(function(b, i){ b.classList.toggle('on', i === idx); });
+      }
+
+      function go(i){
+        idx = Math.max(0, Math.min(items.length - 1, i));
+        layout();
+      }
+      document.getElementById('cfPrev').addEventListener('click', function(){ go(idx - 1); });
+      document.getElementById('cfNext').addEventListener('click', function(){ go(idx + 1); });
+      items.forEach(function(el, i){ el.addEventListener('click', function(){ if (i !== idx) go(i); }); });
+
+      var cf = document.getElementById('cf'), sx = 0, sy = 0, swiping = false, moved = false;
+      cf.addEventListener('pointerdown', function(e){ swiping = true; moved = false; sx = e.clientX; sy = e.clientY; });
+      cf.addEventListener('pointermove', function(e){
+        if (!swiping || moved) return;
+        var dx = e.clientX - sx, dy = e.clientY - sy;
+        if (Math.abs(dy) > Math.abs(dx)) { swiping = false; return; }
+        if (Math.abs(dx) > 42){ go(idx + (dx < 0 ? 1 : -1)); moved = true; }
+      });
+      window.addEventListener('pointerup', function(){ swiping = false; });
+      cf.setAttribute('tabindex', '0');
+      cf.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); }
+        if (e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); }
+      });
+      window.addEventListener('resize', layout);
+      layout();
+
+      if (reduce || !('IntersectionObserver' in window)) return;
+      document.documentElement.classList.add('anim');
+      var rvs = Array.prototype.slice.call(document.querySelectorAll('.rv'));
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        });
+      }, {rootMargin: '0px 0px -6% 0px', threshold: 0.1});
+      rvs.forEach(function(el){ io.observe(el); });
+      setTimeout(function(){ rvs.forEach(function(el){ el.classList.add('in'); }); }, 1800);
     })();
   </script>
 </body>
