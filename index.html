@@ -212,6 +212,47 @@
       max-width: 40ch;
       margin-top: 20px;
     }
+    .android-notice {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      max-width: 100%;
+      margin-bottom: 20px;
+      padding: 8px 10px 8px 13px;
+      border: 1px solid rgba(233,180,94,.38);
+      border-radius: 10px;
+      background: rgba(233,180,94,.1);
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .android-notice[hidden] { display: none; }
+    .android-notice-label {
+      color: var(--amber);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .android-notice p { margin: 0; }
+    .android-notice-close {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 21px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .android-notice-close:hover { background: rgba(255,255,255,.08); color: var(--ink); }
     .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .trust {
       display: flex;
@@ -820,6 +861,11 @@
           <span class="badge">
             <img src="./favicon-32.png" alt="Climb Companion" style="width:19px;height:19px;border-radius:6px;display:block;">
           </span>
+          <aside class="android-notice" id="androidNotice" role="status">
+            <span class="android-notice-label">Novità</span>
+            <p>Android sarà presto disponibile.</p>
+            <button class="android-notice-close" id="androidNoticeClose" type="button" aria-label="Chiudi avviso Android">&times;</button>
+          </aside>
           <h1>Ogni tentativo<br>ha <span>qualcosa</span><br>da dirti.</h1>
           <p class="lead">Progetti, sessioni e allenamenti di arrampicata in un'app sola. E ora il video dei tentativi, per guardare il movimento invece di ricordarselo.</p>
           <div class="cta">
@@ -1033,6 +1079,11 @@
       function onScroll(){ nav.classList.toggle('stuck', window.scrollY > 70); }
       window.addEventListener('scroll', onScroll, {passive: true});
       onScroll();
+
+      var androidNotice = document.getElementById('androidNotice');
+      document.getElementById('androidNoticeClose').addEventListener('click', function () {
+        androidNotice.hidden = true;
+      });
 
       var modal = document.getElementById('contactModal');
       var form = document.getElementById('contactForm');
