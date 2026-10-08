@@ -112,9 +112,6 @@ button.cta { font: inherit; cursor: pointer; border: none; }
 .form-status.success { color: var(--amber-strong); }
 .form-status.error { color: #e77; }
 
-.doc-wrap .platform-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; margin: 0 0 28px; }
-.doc-wrap .platform-switch a { padding: 6px 18px; font-size: 14px; text-decoration: none; color: var(--text-dim); }
-.doc-wrap .platform-switch a.active { background: #1d1b19; color: #fff; }
 
 .site-header nav { position: relative; }
 details.lang { position: relative; font-size: 13px; }
@@ -125,3 +122,4 @@ details.lang .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); m
 .site-header nav details.lang .lang-menu a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--cream); font-size: 14px; }
 .site-header nav details.lang .lang-menu a:hover { background: rgba(237,232,222,0.08); }
 .site-header nav details.lang .lang-menu a.on { color: var(--amber-strong); }
+.doc-wrap .platform-link { margin: 0 0 28px; font-size: 14px; }
