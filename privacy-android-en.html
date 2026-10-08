@@ -15,7 +15,7 @@
     <nav>
       <a href="./index-en.html">Home</a>
       <a href="./terms-android-en.html">Terms</a>
-      <a class="pill" href="./privacy-android-it.html">IT</a>
+      <details class="lang"><summary aria-label="Lingua / Language">🇬🇧 <span>EN</span></summary><div class="lang-menu"><a href="./privacy-android-it.html" hreflang="it">🇮🇹 Italiano</a><a href="./privacy-android-en.html" hreflang="en" class="on">🇬🇧 English</a></div></details>
     </nav>
   </div>
 </header>
@@ -68,5 +68,9 @@
 
   <p class="updated">Last updated: September 25, 2026</p>
 </div>
+<script>
+document.addEventListener('click',function(e){document.querySelectorAll('details.lang[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open');});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('details.lang[open]').forEach(function(d){d.removeAttribute('open');});});
+</script>
 </body>
 </html>

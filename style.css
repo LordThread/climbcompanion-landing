@@ -115,3 +115,13 @@ button.cta { font: inherit; cursor: pointer; border: none; }
 .doc-wrap .platform-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; margin: 0 0 28px; }
 .doc-wrap .platform-switch a { padding: 6px 18px; font-size: 14px; text-decoration: none; color: var(--text-dim); }
 .doc-wrap .platform-switch a.active { background: #1d1b19; color: #fff; }
+
+.site-header nav { position: relative; }
+details.lang { position: relative; font-size: 13px; }
+details.lang summary { list-style: none; cursor: pointer; padding: 6px 14px; border: 1px solid rgba(237,232,222,0.25); border-radius: 20px; color: var(--cream); white-space: nowrap; user-select: none; }
+details.lang summary::-webkit-details-marker { display: none; }
+details.lang summary::after { content: "▾"; margin-left: 6px; font-size: 10px; }
+details.lang .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 150px; background: var(--panel); border: 1px solid var(--panel-line); border-radius: 12px; padding: 6px; box-shadow: 0 12px 32px rgba(0,0,0,.35); z-index: 10; }
+.site-header nav details.lang .lang-menu a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--cream); font-size: 14px; }
+.site-header nav details.lang .lang-menu a:hover { background: rgba(237,232,222,0.08); }
+.site-header nav details.lang .lang-menu a.on { color: var(--amber-strong); }

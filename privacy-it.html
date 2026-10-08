@@ -15,7 +15,7 @@
     <nav>
       <a href="./index.html">Home</a>
       <a href="./terms-it.html">Termini</a>
-      <a class="pill" href="./privacy-en.html">EN</a>
+      <details class="lang"><summary aria-label="Lingua / Language">🇮🇹 <span>IT</span></summary><div class="lang-menu"><a href="./privacy-it.html" hreflang="it" class="on">🇮🇹 Italiano</a><a href="./privacy-en.html" hreflang="en">🇬🇧 English</a></div></details>
     </nav>
   </div>
 </header>
@@ -71,5 +71,9 @@
 
   <p class="updated">Ultimo aggiornamento: 8 settembre 2026</p>
 </div>
+<script>
+document.addEventListener('click',function(e){document.querySelectorAll('details.lang[open]').forEach(function(d){if(!d.contains(e.target))d.removeAttribute('open');});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('details.lang[open]').forEach(function(d){d.removeAttribute('open');});});
+</script>
 </body>
 </html>
