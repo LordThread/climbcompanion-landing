@@ -111,3 +111,7 @@ button.cta { font: inherit; cursor: pointer; border: none; }
 .form-status { margin: 12px 0 0; font-size: 13.5px; }
 .form-status.success { color: var(--amber-strong); }
 .form-status.error { color: #e77; }
+
+.doc-wrap .platform-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; margin: 0 0 28px; }
+.doc-wrap .platform-switch a { padding: 6px 18px; font-size: 14px; text-decoration: none; color: var(--text-dim); }
+.doc-wrap .platform-switch a.active { background: #1d1b19; color: #fff; }
